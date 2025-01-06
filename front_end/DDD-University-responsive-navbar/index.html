@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive | Engineering University Navbar</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="universityBar">
+        <i class="fa-solid fa-building-columns fa-3x logo-icon"></i>
+        <a href="#" class="logo">DDD University</a>
+      </div>
+
+      <input type="checkbox" id="menu-bar" />
+      <label for="menu-bar"
+        ><span id="menuicon" class="material-symbols-outlined">
+          menu</span
+        ></label
+      >
+
+      <nav class="navbar">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About Us</a></li>
+
+          <li>
+            <a href="#" id="academics-link"
+              >Academics<span class="material-symbols-outlined arrow"
+                >expand_more</span
+              ></a
+            >
+
+            <ul id="academicsMenu">
+              <li><a href="">Undergraduate Programs</a></li>
+              <li><a href="">Postgraduate Programs</a></li>
+              <li>
+                <a href="" id="research-link"
+                  >Research<span class="material-symbols-outlined arrow"
+                    >chevron_right</span
+                  ></a
+                >
+                <ul id="researchMenu">
+                  <li><a href="">AI Research</a></li>
+                  <li><a href="">Energy Systems</a></li>
+                  <li><a href="">Material Science</a></li>
+                </ul>
+              </li>
+              <li><a href="">Departments</a></li>
+              <li><a href="">Labs & Facilities</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a id="projectsLink" href=""
+              >Projects<span class="material-symbols-outlined arrow"
+                >expand_more</span
+              ></a
+            >
+
+            <ul id="projectMenu">
+              <li><a href="">AI and Robotics</a></li>
+              <li><a href="">Sustainable Energy</a></li>
+              <li><a href="">Smart Cities</a></li>
+              <li><a href="">Biomedical Engineering</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a id="studentLifeLink" href=""
+              >Student Life<span class="material-symbols-outlined arrow"
+                >expand_more</span
+              ></a
+            >
+
+            <ul id="studentLifeMenu">
+              <li><a href="">Clubs and Organizations</a></li>
+              <li><a href="">Sports</a></li>
+              <li><a href="">Events</a></li>
+              <li><a href="">Campus Facilities</a></li>
+            </ul>
+          </li>
+
+          <li><a href="">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

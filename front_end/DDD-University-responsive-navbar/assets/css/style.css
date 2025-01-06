@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgb(255, 255, 255);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: linear-gradient(
+    79deg,
+    rgb(238, 238, 238),
+    rgb(255, 255, 255)
+  );
+  z-index: 999;
+  box-shadow: 0px 0px 10px rgb(2, 139, 0);
+}
+
+header .universityBar .logo {
+  font-weight: bolder;
+  font-size: 25px;
+  color: rgb(2, 139, 0);
+}
+
+.universityBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  height: 80px;
+  padding: 10px;
+}
+
+.logo-icon {
+  color: darkgreen;
+}
+
+header .navbar ul {
+  list-style: none;
+}
+
+header .navbar ul li {
+  position: relative;
+  float: left;
+}
+
+header .navbar ul li a {
+  font-size: 20px;
+  padding: 23px 20px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  transition: 0.5s color ease;
+  position: relative;
+  font-weight: 400;
+}
+
+.material-symbols-outlined {
+  margin-left: 5px;
+}
+
+header .navbar ul li a:hover {
+  transition: 0.4s;
+  color: rgb(2, 139, 0);
+}
+
+header .navbar ul li a:after {
+  content: "";
+  position: absolute;
+  background-color: rgb(2, 139, 0);
+  height: 4px;
+  width: 0%;
+  border-radius: 10px;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+header .navbar ul li a:hover:after {
+  width: 98%;
+}
+
+#academicsMenu {
+  transition: 0.3s opacity ease;
+  display: none;
+}
+
+#academicsMenu li a {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#projectMenu li a {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+header .navbar ul li ul {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 230px;
+  background-color: rgba(220, 220, 220, 0.173);
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 10px rgb(2, 139, 0);
+  border-radius: 10px 10px 10px 10px;
+  z-index: -4;
+}
+
+header .navbar ul li ul li ul {
+  left: 240px;
+  top: 0;
+}
+
+header .navbar ul li ul li {
+  width: 100%;
+  padding: 10px auto;
+}
+
+#researchMenu {
+  display: none;
+}
+
+#projectMenu {
+  display: none;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+#menu-bar {
+  display: none;
+}
+
+header label {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  display: none;
+}
+
+/* Media Queries */
+
+@media (max-width: 1170px) {
+  header {
+    padding: 20px;
+  }
+
+  header label {
+    display: initial;
+  }
+
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-top: 1px solid black;
+    display: none;
+  }
+
+  header .navbar ul li {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+  }
+
+  header .navbar ul li ul {
+    position: static;
+    width: 100%;
+  }
+
+  header .navbar ul li ul li {
+    background-color: rgba(232, 232, 232, 0.437);
+    backdrop-filter: blur(5px);
+  }
+
+  header .navbar ul li ul li ul li {
+    background-color: rgba(214, 214, 214, 0.886);
+    backdrop-filter: blur(5px);
+  }
+
+  #menu-bar:checked ~ .navbar {
+    display: initial;
+  }
+
+  #menuicon {
+    padding-top: 10px;
+    font-size: 50px;
+    color: rgb(16, 139, 0);
+  }
+}
