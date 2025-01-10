@@ -119,7 +119,7 @@ class InternationalOrder extends CorporateOrder {
 }
 
 //Main Class: Simulating the Order Processing System
-public class OrderProcessingSystem {
+public class Inheritance {
  public static void main(String[] args) {
      // Retail Order
      RetailOrder retailOrder = new RetailOrder(101, "Alice", 5000, 10); // 10% discount
