@@ -5,13 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-// Custom Exception Class
-class InsufficientException extends Exception {
-    public InsufficientException(String message) {
-        super(message);
-    }
-}
-
 public class ExceptionDemo {
 
     int a = 10;
