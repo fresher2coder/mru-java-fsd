@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/greet")
 public class GreetingServlet extends HttpServlet {
@@ -26,11 +27,17 @@ public class GreetingServlet extends HttpServlet {
             throws IOException {
         String name = request.getParameter("name");
         response.setContentType("text/html");
-        response.getWriter().write(        	   
+        
+        PrintWriter out = response.getWriter();
+        out.write(        	   
         	    "<body>" +
         	    "<h2>Hello, " + name + "!</h2>" +
         	    "</body>"         	    
         	);
+        
+        out.write(""" 
+				<a href="index.html">Go to Home</a><br>
+				""");
 
     }
 }

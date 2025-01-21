@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @WebServlet("/contextGreet")
@@ -17,6 +18,11 @@ public class ContextGreetingServlet extends HttpServlet {
         String globalMessage = getServletContext().getAttribute("globalMessage").toString();
 
         response.setContentType("text/html");
-        response.getWriter().write("<h1>" + globalMessage + "</h1>");
+        
+        PrintWriter out = response.getWriter();
+        out.write("<h1>" + globalMessage + "</h1>");
+        out.write(""" 
+				<a href="index.html">Go to Home</a><br>
+				""");
     }
 }

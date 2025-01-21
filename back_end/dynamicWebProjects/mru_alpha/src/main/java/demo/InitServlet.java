@@ -34,6 +34,9 @@ public class InitServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.write("<h1>Servlet Initialized</h1>");
 		out.write("<h2>" + appVersion + "</h2>");
+		out.write("""
+				<a href="index.html">Go to Home</a><br>
+				""");
 
 	}
 }

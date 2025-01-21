@@ -25,6 +25,9 @@ public class HelloServlet extends HttpServlet {
 				        <p>This is a simple Servlet example.</p>
 
 				""");
+		out.write(""" 
+				<a href="index.html">Go to Home</a><br>
+				""");
 
 		// Set response content type to JSON
 //		response.setContentType("application/json");
