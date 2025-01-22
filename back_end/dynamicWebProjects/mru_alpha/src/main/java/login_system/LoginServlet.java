@@ -29,13 +29,15 @@ public class LoginServlet extends HttpServlet {
 
         if (student != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("student", student);
+            session.setAttribute("username", student.getUsername());
 
-            response.sendRedirect("dashboard");
+            request.getRequestDispatcher("dashboard").forward(request, response);
         } else {
-            out.println("<h1>Login Failed!</h1>");
-            out.println("<p>Invalid username or password. Try again.</p>");
-            out.println("<a href='login.html'>Back to Login</a>");
-        }
+        	request.setAttribute("error", "Login is not successful.");
+            request.setAttribute("message", "Login");
+            request.setAttribute("link", "login.jsp");
+            
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+    }
     }
 }

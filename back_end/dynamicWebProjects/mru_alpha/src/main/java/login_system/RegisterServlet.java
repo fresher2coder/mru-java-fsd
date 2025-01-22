@@ -32,12 +32,18 @@ public class RegisterServlet extends HttpServlet {
         Student student = new Student(username, password, name, email, dob, gender, course, address);
         
         if (UserStore.registerStudent(student)) {
-            out.println("<h1>Registration Successful!</h1>");
-            out.println("<a href='login.html'>Go to Login</a>");
+            request.setAttribute("success", "Registration is successful");
+            request.setAttribute("message", "Login");
+            request.setAttribute("link", "login.jsp");
+            
+            request.getRequestDispatcher("success.jsp").forward(request, response);
         } else {
-            out.println("<h1>Registration Failed!</h1>");
-            out.println("<p>Username already exists. Try again.</p>");
-            out.println("<a href='register.html'>Back to Registration</a>");
+        	request.setAttribute("error", "Registration is not successful. Username is already Exist");
+            request.setAttribute("message", "Register");
+            request.setAttribute("link", "register.jsp");
+            
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+ 
         }
     }
 }

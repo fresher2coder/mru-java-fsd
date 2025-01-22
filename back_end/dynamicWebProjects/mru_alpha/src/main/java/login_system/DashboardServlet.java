@@ -7,38 +7,29 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import login_system.dto.Student;
+import login_system.dto.UserStore;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    	PrintWriter out = response.getWriter();
-    	
-    	HttpSession session = request.getSession(false);
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		String username = (String)session.getAttribute("username");
+		// Check if the session or student attribute exists
+		if (session == null || username == null) {
+			response.sendRedirect("login.html");
+			return;
+		}
 
-        if (session == null || session.getAttribute("student") == null) {
-            response.sendRedirect("login.html");
-            return;
-        }
-
-        Student student = (Student) session.getAttribute("student");
-
-        response.setContentType("text/html");
-        out.println("<h1>Welcome to the Dashboard</h1>");
-        out.println("<p>Name: " + student.getName() + "</p>");
-        out.println("<p>Email: " + student.getEmail() + "</p>");
-        out.println("<p>Gender: " + student.getGender() + "</p>");
-        out.println("<p>Course: " + student.getCourse() + "</p>");
-        out.println("<p>Address: " + student.getAddress() + "</p>");
-        out.println("<br>");
-        out.println("<form action='logout' method='get'>");
-        out.println("<button type='submit'>Logout</button>");
-        out.println("</form>");
-    }
+		// Pass the student object to the JSP
+		Student student = UserStore.getStudent(username);
+		session.setAttribute("student", student);
+		response.sendRedirect("dashboard.jsp");
+	}
 }

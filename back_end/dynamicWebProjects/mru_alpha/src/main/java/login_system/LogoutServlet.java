@@ -23,7 +23,11 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate();
         }
 
-        out.println("<h1>Logged Out Successfully!</h1>");
-        out.println("<a href='login.html'>Go to Login</a>");
+        request.setAttribute("success", "Sorry to see you leave. Login to enjoy the features");
+        request.setAttribute("message", "Login");
+        request.setAttribute("link", "login.jsp");
+        
+        request.getRequestDispatcher("success.jsp").forward(request, response);
+
     }
 }

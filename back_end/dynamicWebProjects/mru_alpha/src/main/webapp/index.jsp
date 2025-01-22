@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +18,8 @@
 		<a href="greet">Go to Greeting Servlet</a><br>	
 		<a href="init">Go to Init Servlet(Servlet Config)</a><br>			
 		<a href="contextGreet">Go to Greeting Servlet(Servlet Context)</a></br>
-		<a href="register.html">Click to Register</a> <br>
-		<a href="login.html">Click to Login</a> <br>
+		<a href="register.jsp">Click to Register</a> <br>
+		<a href="login.jsp">Click to Login</a> <br>
 	</center>
 </body>
 </html>
