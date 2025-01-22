@@ -8,6 +8,7 @@
 <body>
     <h1>Student Registration Form</h1>
     <form action="register" method="post">
+        
         <label for="name">Full Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -34,7 +35,14 @@
         <label for="address">Address:</label><br>
         <textarea id="address" name="address" rows="4" cols="30" required></textarea><br><br>
 
+		<label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+		
         <button type="submit">Register</button>
     </form>
+    <a href='index.html'>Go to Home</a>
 </body>
 </html>

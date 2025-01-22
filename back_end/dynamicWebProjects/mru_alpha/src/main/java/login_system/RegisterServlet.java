@@ -5,6 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import login_system.dto.Student;
+import login_system.dto.UserStore;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -15,7 +18,10 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve form data
+        PrintWriter out = response.getWriter();
+    	
+    	String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String dob = request.getParameter("dob");
@@ -23,25 +29,15 @@ public class RegisterServlet extends HttpServlet {
         String course = request.getParameter("course");
         String address = request.getParameter("address");
 
-        // Set content type
-        response.setContentType("text/html");
-
-        // Generate response
-        PrintWriter out = response.getWriter();
+        Student student = new Student(username, password, name, email, dob, gender, course, address);
         
-        out.write("<h1>Student Registration Successful</h1>");
-        out.write("<p><strong>Name:</strong> " + name + "</p>");
-        out.write("<p><strong>Email:</strong> " + email + "</p>");
-        out.write("<p><strong>Date of Birth:</strong> " + dob + "</p>");
-        out.write("<p><strong>Gender:</strong> " + gender + "</p>");
-        out.write("<p><strong>Course:</strong> " + course + "</p>");
-        out.write("<p><strong>Address:</strong> " + address + "</p>");
-        
-        
-        out.write(""" 
-				<a href="index.html">Go to Home</a><br>
-				""");
-        
-        
+        if (UserStore.registerStudent(student)) {
+            out.println("<h1>Registration Successful!</h1>");
+            out.println("<a href='login.html'>Go to Login</a>");
+        } else {
+            out.println("<h1>Registration Failed!</h1>");
+            out.println("<p>Username already exists. Try again.</p>");
+            out.println("<a href='register.html'>Back to Registration</a>");
+        }
     }
 }
