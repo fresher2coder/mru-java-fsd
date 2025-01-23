@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	PrintWriter out = response.getWriter();
+    	
     	
     	String username = request.getParameter("username");
         String password = request.getParameter("password");

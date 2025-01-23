@@ -19,11 +19,13 @@ public class DashboardServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
+		
 		String username = (String)session.getAttribute("username");
 		// Check if the session or student attribute exists
 		if (session == null || username == null) {
-			response.sendRedirect("login.html");
+			response.sendRedirect("login.jsp");
 			return;
 		}
 
