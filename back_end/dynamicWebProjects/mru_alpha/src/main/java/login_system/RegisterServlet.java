@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import login_system.dto.Student;
 import login_system.dto.UserStore;
+import login_system.dto.Vehicle;
+import login_system.dto.VehicleStore;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,16 +24,16 @@ public class RegisterServlet extends HttpServlet {
     	
     	String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String dob = request.getParameter("dob");
-        String gender = request.getParameter("gender");
-        String course = request.getParameter("course");
-        String address = request.getParameter("address");
-
-        Student student = new Student(username, password, name, email, dob, gender, course, address);
         
-        if (UserStore.registerStudent(student)) {
+        String ownerName = request.getParameter("ownerName");
+        String vehicleType = request.getParameter("vehicleType");
+        String registrationNumber = request.getParameter("registrationNumber");
+        String color = request.getParameter("color");
+
+        Vehicle vehicle = new Vehicle(username, password, ownerName, vehicleType, registrationNumber, color);
+        
+        
+        if (VehicleStore.registerStudent(vehicle)) {
             request.setAttribute("success", "Registration is successful");
             request.setAttribute("message", "Login");
             request.setAttribute("link", "login.jsp");
