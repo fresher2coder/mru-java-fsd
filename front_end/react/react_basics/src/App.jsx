@@ -9,6 +9,7 @@ import RightSideBar from "./components/layout/RightSideBar";
 import Footer from "./components/layout/Footer";
 import UserProfile from "./components/props/UserProfile";
 import Container from "./components/props/Container";
+import Counter from "./components/state/Counter";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
 
       {/* props */}
 
-      <UserProfile
+      {/* <UserProfile
         name="Dineshkumar"
         age={34}
         isMarried={true}
@@ -52,7 +53,10 @@ function App() {
       <Container title="Settings">
         <h2>Change Settings</h2>
         <p>Change your preferences at ease</p>
-      </Container>
+      </Container> */}
+
+      {/* state  */}
+      <Counter />
     </>
   );
 }
