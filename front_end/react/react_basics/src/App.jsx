@@ -11,6 +11,7 @@ import UserProfile from "./components/props/UserProfile";
 import Container from "./components/props/Container";
 import Counter from "./components/state/Counter";
 import MultiCounter from "./components/state/MultiCounter";
+import Parent from "./components/props/props_as_method/Parent";
 
 function App() {
   return (
@@ -57,10 +58,13 @@ function App() {
       </Container> */}
 
       {/* state  */}
-      <Counter />
+      {/* <Counter />
       <MultiCounter initialValue={0} incrementValue={1} />
       <MultiCounter initialValue={10} incrementValue={10} />
-      <MultiCounter initialValue={100} incrementValue={100} />
+      <MultiCounter initialValue={100} incrementValue={100} /> */}
+
+      {/* props as method: Child to Parent  */}
+      <Parent />
     </>
   );
 }
