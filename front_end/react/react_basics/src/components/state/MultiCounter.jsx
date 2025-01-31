@@ -21,7 +21,7 @@ function MultiCounter(props) {
   };
   return (
     <>
-      <div className="counter">
+      <div className="container">
         <h1>CountA: {count.countA}</h1>
         <button onClick={incrementA}>Increment A</button>
 

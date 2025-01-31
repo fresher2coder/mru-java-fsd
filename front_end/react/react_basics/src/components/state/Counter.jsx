@@ -21,7 +21,7 @@ function Counter() {
 
   return (
     <>
-      <section className="counter">
+      <section className="container">
         <h1>Count: {count}</h1>
         <sections className="btns">
           <button onClick={increment}>Increment</button>
