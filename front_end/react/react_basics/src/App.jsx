@@ -10,6 +10,7 @@ import Footer from "./components/layout/Footer";
 import UserProfile from "./components/props/UserProfile";
 import Container from "./components/props/Container";
 import Counter from "./components/state/Counter";
+import MultiCounter from "./components/state/MultiCounter";
 
 function App() {
   return (
@@ -57,6 +58,9 @@ function App() {
 
       {/* state  */}
       <Counter />
+      <MultiCounter initialValue={0} incrementValue={1} />
+      <MultiCounter initialValue={10} incrementValue={10} />
+      <MultiCounter initialValue={100} incrementValue={100} />
     </>
   );
 }

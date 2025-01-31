@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  let [count, setCount] = useState(0);
 
   function increment() {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
     console.log(count);
   }
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  const incrementFive = () => {
+    for (let i = 0; i < 5; i++) {
+      increment();
+    }
+  };
   return (
     <>
-      <h1>Count: {count}</h1>
-      <sections className="btns">
-        <button onClick={increment}>Increment</button>
-      </sections>
+      <section className="counter">
+        <h1>Count: {count}</h1>
+        <sections className="btns">
+          <button onClick={increment}>Increment</button>
+          <button onClick={decrement}>Decrement</button>
+          <button onClick={incrementFive}>Increment 5x</button>
+        </sections>
+      </section>
     </>
   );
 }
