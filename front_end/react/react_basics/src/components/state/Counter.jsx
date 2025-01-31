@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 function Counter() {
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   function increment() {
-    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1); // 6 7 8 9 10
     console.log(count);
   }
 
@@ -14,9 +14,11 @@ function Counter() {
 
   const incrementFive = () => {
     for (let i = 0; i < 5; i++) {
+      //i = 0 1
       increment();
     }
   };
+
   return (
     <>
       <section className="counter">

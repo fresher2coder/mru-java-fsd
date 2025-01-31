@@ -19,7 +19,6 @@ function MultiCounter(props) {
       countB: prevCount.countB + incrementValue,
     }));
   };
-
   return (
     <>
       <div className="counter">
