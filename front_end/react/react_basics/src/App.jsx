@@ -12,8 +12,6 @@ import Container from "./components/props/Container";
 import Counter from "./components/state/Counter";
 import MultiCounter from "./components/state/MultiCounter";
 import Parent from "./components/props/prop_as_method/Parent";
-import EmployeeTable from "./components/map_filter_reduce/Employee";
-import ParentContainer from "./components/useEffect/ParentContainer";
 
 function App() {
   return (
@@ -66,13 +64,7 @@ function App() {
       <MultiCounter initialValue={100} incrementValue={100} /> */}
 
       {/* prop as method: child to parent*/}
-      {/* <Parent /> */}
-
-      {/* useEffect  */}
-      <ParentContainer />
-
-      {/* map filter reduce  */}
-      {/* <EmployeeTable /> */}
+      <Parent />
     </>
   );
 }
