@@ -192,3 +192,56 @@ button:hover {
 button:active {
   transform: scale(0.98);
 }
+
+.container-employee {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.container-employee h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.container-employee label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.container-employee select {
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.container-employee table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.container-employee table th,
+table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.container-employee table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.container-employee table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.container-employee .total-salary {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
