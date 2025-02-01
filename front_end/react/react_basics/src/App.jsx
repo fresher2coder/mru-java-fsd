@@ -12,7 +12,7 @@ import Container from "./components/props/Container";
 import Counter from "./components/state/Counter";
 import MultiCounter from "./components/state/MultiCounter";
 import Parent from "./components/props/prop_as_method/Parent";
-import EmployeeTable from "./components/map_filter_reduce/Employee";
+import UserDashboard from "./components/conditionalRendering/UserDashboard";
 import ParentContainer from "./components/useEffect/ParentContainer";
 
 function App() {
@@ -68,11 +68,11 @@ function App() {
       {/* prop as method: child to parent*/}
       {/* <Parent /> */}
 
+      {/* conditional rendering  */}
+      {/* <UserDashboard isLoggedIn={false} username="DK" /> */}
+
       {/* useEffect  */}
       <ParentContainer />
-
-      {/* map filter reduce  */}
-      {/* <EmployeeTable /> */}
     </>
   );
 }

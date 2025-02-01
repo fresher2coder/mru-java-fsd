@@ -1,29 +1,36 @@
 import React, { useEffect } from "react";
 
-export function MouseTracker({ setCoordinates }) {
+function MouseTracker(props) {
+  const { setCoordinates } = props;
   useEffect(() => {
     console.log("UseEffect: Always");
   });
 
   useEffect(() => {
-    // Mouse move event handler
+    console.log("UseEffect: Mounted");
+
     const handleMouseMove = (event) => {
       setCoordinates({ x: event.clientX, y: event.clientY });
     };
-
-    // Mounting: Attach event listener
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Cleanup function for unmounting
     return () => {
+      console.log("UseEffect: UnMounted");
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []); // Dependency array includes setCoordinates
+  }, []);
 
+  useEffect(() => {
+    console.log("Coordinated Changed");
+  }, [setCoordinates]);
   return (
-    <div className="tracker-card">
-      <h3>Mouse Tracker Active</h3>
-      <p>Move your mouse to track coordinates!</p>
-    </div>
+    <>
+      <section>
+        <h3>Mouse Tracker Active</h3>
+        <p>Move your mouse to track the coordinates</p>
+      </section>
+    </>
   );
 }
+
+export default MouseTracker;
