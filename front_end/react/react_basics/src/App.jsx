@@ -69,7 +69,7 @@ function App() {
       {/* <Parent /> */}
 
       {/* conditional rendering  */}
-      {/* <UserDashboard isLoggedIn={false} username="DK" /> */}
+      {/* <UserDashboard isLoggedIn={true} userName="DK" /> */}
 
       {/* useEffect  */}
       <ParentContainer />

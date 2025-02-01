@@ -2,50 +2,57 @@ import React from "react";
 
 //if-else
 // function UserDashboard(props) {
-//   const { isLoggedIn, username } = props;
+//   const { isLoggedIn, userName } = props;
 
 //   if (isLoggedIn)
 //     return (
 //       <>
-//         <h1>Hi, Welcome {username} </h1>
+//         <h1>HI! Welcome {userName}</h1>
 //       </>
 //     );
 //   else
 //     return (
 //       <>
-//         <h1>Please Login</h1>
+//         <h1>Please Log IN</h1>
 //       </>
 //     );
 // }
 
-//Element variable
+//element-variable
 // function UserDashboard(props) {
-//   const { isLoggedIn, username } = props;
+//   const { isLoggedIn, userName } = props;
 //   let greetMessage;
-//   if (isLoggedIn) greetMessage = <h1>Hi, Welcome {username}</h1>;
-//   else greetMessage = <h2>Please Login</h2>;
-
-//   return <>{greetMessage}</>;
-// }
-
-//Ternary Operator
-// function UserDashboard(props) {
-//   const { isLoggedIn, username } = props;
+//   if (isLoggedIn) greetMessage = <h2>HI! Welcome {userName}</h2>;
+//   else greetMessage = <h3>Please Login</h3>;
 
 //   return (
 //     <>
-//       <h1>{isLoggedIn ? `Welcome ${username}` : "Please Login"}</h1>
+//       <h1>React Project</h1>
+//       {greetMessage}
 //     </>
 //   );
 // }
 
-//short-circuit
+//ternary operator
+// function UserDashboard(props) {
+//   const { isLoggedIn, userName } = props;
+
+//   return (
+//     <>
+//       <h1>React Project</h1>
+//       <h2>{isLoggedIn ? `Hi, Welcome ${userName}` : "Please Login"}</h2>
+//     </>
+//   );
+// }
+
+//short-circuit operator
 function UserDashboard(props) {
-  const { isLoggedIn, username } = props;
+  const { isLoggedIn, userName } = props;
 
   return (
     <>
-      {isLoggedIn && <h1>Hi Welcome {username}</h1>}
+      <h1>React Project</h1>
+      {isLoggedIn && <h1>Hi, Welcome {userName}</h1>}
       {!isLoggedIn && <h1>Please Login</h1>}
     </>
   );

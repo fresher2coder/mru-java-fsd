@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MouseTracker from "./MouseTracker";
 
 function ParentContainer() {
-  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [showTracker, setShowTracker] = useState(true);
-  useEffect(() => {
-    console.log("X-Coordinate is tracked");
-  }, [coordinates.x]);
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const handleTracker = () => {
     setShowTracker((prev) => !prev);
   };
   return (
     <>
       <section className="container">
-        <h2>Mouse Coordinates Tracker(From Parent)</h2>
+        <h2>Mouse Tracker App(Parent Component)</h2>
         <p>
           X: {coordinates.x}, Y: {coordinates.y}
         </p>

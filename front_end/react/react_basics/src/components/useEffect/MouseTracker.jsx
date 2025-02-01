@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function MouseTracker(props) {
   const { setCoordinates } = props;
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
     console.log("UseEffect: Always");
   });
@@ -21,14 +23,13 @@ function MouseTracker(props) {
   }, []);
 
   useEffect(() => {
-    console.log("Coordinated Changed");
-  }, [setCoordinates]);
+    console.log("UseEffect: Count is Updated");
+  }, [count]);
+
   return (
     <>
-      <section>
-        <h3>Mouse Tracker Active</h3>
-        <p>Move your mouse to track the coordinates</p>
-      </section>
+      <h3>Mouse Tracker is Active</h3>
+      <button onClick={() => setCount(count + 1)}>Click: {count}</button>
     </>
   );
 }
