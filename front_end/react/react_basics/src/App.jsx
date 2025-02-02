@@ -14,6 +14,7 @@ import MultiCounter from "./components/state/MultiCounter";
 import Parent from "./components/props/prop_as_method/Parent";
 import UserDashboard from "./components/conditionalRendering/UserDashboard";
 import ParentContainer from "./components/useEffect/ParentContainer";
+import EmployeeTable from "./components/mapFilterReduce/EmployeeTable";
 
 function App() {
   return (
@@ -72,7 +73,10 @@ function App() {
       {/* <UserDashboard isLoggedIn={true} userName="DK" /> */}
 
       {/* useEffect  */}
-      <ParentContainer />
+      {/* <ParentContainer /> */}
+
+      {/* map filter reduce  */}
+      <EmployeeTable />
     </>
   );
 }
