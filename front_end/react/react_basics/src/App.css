@@ -245,3 +245,88 @@ table td {
   font-weight: bold;
   margin-top: 20px;
 }
+
+/* Profile Form Styling */
+.profile-form {
+  background-color: var(--input-border-color);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid var(--input-border-color);
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--primary-color);
+}
+
+.profile-form input:focus {
+  border-color: var(--input-focus-border);
+  outline: none;
+}
+
+.profile-form button {
+  background-color: var(--btn-bg-color);
+  color: var(--btn-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+/* Profile Card Styling */
+.profile-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 10px auto;
+  max-width: 1300px;
+}
+
+.card {
+  background-color: var(--input-focus-border);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-details {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.card button {
+  background-color: var(--btn-bg-color);
+  color: var(--btn-color);
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: var(--btn-hover-bg);
+}

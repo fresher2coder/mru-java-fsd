@@ -15,6 +15,7 @@ import Parent from "./components/props/prop_as_method/Parent";
 import UserDashboard from "./components/conditionalRendering/UserDashboard";
 import ParentContainer from "./components/useEffect/ParentContainer";
 import EmployeeTable from "./components/mapFilterReduce/EmployeeTable";
+import Profile from "./components/formHandling/Profile";
 
 function App() {
   return (
@@ -76,7 +77,10 @@ function App() {
       {/* <ParentContainer /> */}
 
       {/* map filter reduce  */}
-      <EmployeeTable />
+      {/* <EmployeeTable /> */}
+
+      {/* form handling  */}
+      <Profile />
     </>
   );
 }
