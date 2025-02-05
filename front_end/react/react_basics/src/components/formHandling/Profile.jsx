@@ -4,7 +4,7 @@ import ProfileForm from "./ProfileForm";
 import ListCard from "./ListCard";
 import { v4 as generateId } from "uuid";
 
-// ReactModal.setAppElement("#root");
+ReactModal.setAppElement("#root");
 
 function Profile() {
   const [profiles, setProfiles] = useState([]);
@@ -12,6 +12,18 @@ function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const addProfile = (newProfile) => {
+    // Check if a profile with the same fullname already exists
+    const isDuplicate = profiles.some(
+      (profile) =>
+        profile.fullname.toLowerCase() === newProfile.fullname.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      alert("A profile with this fullname already exists!");
+      return; // Exit without adding the profile
+    }
+
+    // If not a duplicate, add the new profile
     newProfile.id = generateId();
     setProfiles((profiles) => [...profiles, newProfile]);
     setModalOpen(false);
