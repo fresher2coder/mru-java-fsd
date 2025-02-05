@@ -1,24 +1,25 @@
+// ListCard Component
 import React from "react";
 
-function ListCard({ id, data, deleteProfile }) {
+function ListCard(props) {
+  const { fullname, age, occupation } = props.data;
+  const { onDelete, onEdit } = props;
   return (
     <>
-      <div className="card">
-        <h3>Id: {id}</h3>
-        <p>Name: {data.name}</p>
-        {data.age && <p>Age: {data.age}</p>}
-        {data.occupation && <p>Occuputation: {data.occupation}</p>}
-        <div className="btns">
-          <button
-            type="button"
-            onClick={() => {
-              deleteProfile(id);
-            }}
-          >
-            Delete Profile
+      <section className="card">
+        <h3>List Card</h3>
+        <p>Name: {fullname}</p>
+        <p>Age: {age}</p>
+        <p>Occupation: {occupation}</p>
+        <section className="btns">
+          <button className="btn" onClick={onDelete}>
+            Delete
           </button>
-        </div>
-      </div>
+          <button className="btn" onClick={onEdit}>
+            Edit
+          </button>
+        </section>
+      </section>
     </>
   );
 }

@@ -1,54 +1,108 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function ProfileForm({ addProfile }) {
+function ProfileForm(props) {
+  const { addProfile, initialData = {}, isEditing = false } = props;
   const [formData, setFormData] = useState({
-    name: "",
+    fullname: "",
+    age: "",
+    occupation: "",
+  });
+  const [errors, setErrors] = useState({
+    fullname: "",
     age: "",
     occupation: "",
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      setFormData(initialData);
+    }
+  }, [initialData, isEditing]);
+
   const handleChange = (event) => {
-    //console.log(event.target.value, event.target.name);
     setFormData((prevData) => ({
       ...prevData,
       [event.target.name]: event.target.value,
     }));
   };
+
+  const validateForm = () => {
+    let valid = true;
+    let validationErrors = { fullname: "", age: "", occupation: "" };
+
+    // Fullname validation: Only alphabets and a single space allowed
+    const fullnameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    if (!fullnameRegex.test(formData.fullname)) {
+      validationErrors.fullname =
+        "Fullname should only contain alphabets and a single space between words.";
+      valid = false;
+    }
+
+    // Occupation validation: Only alphabets and a single space allowed
+    const occupationRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    if (!occupationRegex.test(formData.occupation)) {
+      validationErrors.occupation =
+        "Occupation should only contain alphabets and a single space between words.";
+      valid = false;
+    }
+
+    // Age validation: Age greater than 18
+    if (formData.age <= 18 || isNaN(formData.age) || formData.age === "") {
+      validationErrors.age = "Age should be greater than 18.";
+      valid = false;
+    }
+
+    setErrors(validationErrors);
+    return valid;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
-    addProfile(formData);
+    if (validateForm()) {
+      addProfile(formData);
+      setFormData({ fullname: "", age: "", occupation: "" });
+      setErrors({ fullname: "", age: "", occupation: "" }); // Clear errors on successful submission
+    }
   };
+
   return (
     <>
-      <form
-        className="profile-form container"
-        action=""
-        onSubmit={handleSubmit}
-      >
-        <h2>Profile Form</h2>
+      <form className="profile-form" onSubmit={handleSubmit}>
+        <h2>{isEditing ? "Edit Profile" : "Profile Form"}</h2>
+
         <input
           type="text"
-          name="name"
-          placeholder="Name"
+          placeholder="FullName"
+          name="fullname"
+          value={formData.fullname}
+          required
           onChange={handleChange}
-          value={formData.name}
         />
+        {errors.fullname && <p className="error">{errors.fullname}</p>}
+
         <input
           type="number"
-          name="age"
           placeholder="Age"
-          onChange={handleChange}
+          name="age"
           value={formData.age}
+          required
+          onChange={handleChange}
         />
+        {errors.age && <p className="error">{errors.age}</p>}
+
         <input
           type="text"
-          name="occupation"
           placeholder="Occupation"
-          onChange={handleChange}
+          name="occupation"
           value={formData.occupation}
+          required
+          onChange={handleChange}
         />
-        <button type="submit">Add Profile</button>
+        {errors.occupation && <p className="error">{errors.occupation}</p>}
+
+        <button type="submit">
+          {isEditing ? "Update Profile" : "Create Profile"}
+        </button>
       </form>
     </>
   );
