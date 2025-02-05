@@ -330,3 +330,10 @@ table td {
 .card button:hover {
   background-color: var(--btn-hover-bg);
 }
+
+/* modal-sytle  */
+/* .modal {
+  content: {
+    background-color: "transparent";
+  },
+} */
