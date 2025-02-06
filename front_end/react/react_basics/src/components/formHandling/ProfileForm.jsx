@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { validate } from "uuid";
 
 function ProfileForm(props) {
-  const { addProfile } = props;
+  const { profile, initialData = {}, isEditing = false } = props;
   const [formData, setFormData] = useState({
     fullname: "",
     age: "",
     occupation: "",
   });
+
+  const [errors, setErrors] = useState({
+    fullname: "",
+    age: "",
+    occupation: "",
+  });
+
+  useEffect(() => {
+    if (isEditing) setFormData(initialData);
+  }, [initialData, isEditing]);
 
   const handleChange = (event) => {
     setFormData((prevData) => ({
@@ -15,17 +26,40 @@ function ProfileForm(props) {
     }));
   };
 
+  const validateForm = () => {
+    let valid = true;
+    let validateErrors = { fullname: "", age: "", occupation: "" };
+
+    const fullNameRegex = /^[A-Za-z]+(?:[A-Za-z]+)*$/;
+
+    if (!fullNameRegex.test(formData.fullname)) {
+      valid = false;
+      validateErrors.fullname = "Invalid name format";
+    }
+
+    //age, occupation
+
+    setErrors(validateErrors);
+    return valid;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    addProfile(formData);
-    setFormData({ fullname: "", age: "", occupation: "" });
+    if (validateForm()) {
+      profile(formData);
+      setFormData({ fullname: "", age: "", occupation: "" });
+      setErrors({
+        fullname: "",
+        age: "",
+        occupation: "",
+      });
+    }
   };
 
   return (
     <>
       <form className="profile-form" onSubmit={handleSubmit}>
-        <h2>"Profile Form"</h2>
+        <h2>{isEditing ? "Update Profile" : "Create Profile"}</h2>
 
         <input
           type="text"
@@ -36,6 +70,8 @@ function ProfileForm(props) {
           onChange={handleChange}
         />
 
+        {errors.fullname && <span className="error">{errors.fullname}</span>}
+
         <input
           type="number"
           placeholder="Age"
@@ -44,6 +80,8 @@ function ProfileForm(props) {
           required
           onChange={handleChange}
         />
+
+        {errors.age && <span className="error">{errors.age}</span>}
 
         <input
           type="text"
@@ -54,7 +92,13 @@ function ProfileForm(props) {
           onChange={handleChange}
         />
 
-        <button type="submit">"Create Profile"</button>
+        {errors.occupation && (
+          <span className="error">{errors.occupation}</span>
+        )}
+
+        <button type="submit">
+          {isEditing ? "Update Profile" : "Create Profile"}
+        </button>
       </form>
     </>
   );

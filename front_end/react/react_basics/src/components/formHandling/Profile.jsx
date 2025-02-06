@@ -22,12 +22,32 @@ function Profile() {
     setProfiles((profiles) => profiles.filter((profile) => profile.id !== id));
   };
 
-  const updateProfile = () => {};
+  const updateProfile = (updatedProfile) => {
+    setProfiles((prevprofiles) =>
+      prevprofiles.map((profile) =>
+        profile.id === updatedProfile.id ? updatedProfile : profile
+      )
+    );
+    setEditingProfile(null);
+    setModalOpen(false);
+  };
+
+  const openEditModel = (profile) => {
+    setEditingProfile(profile);
+    setModalOpen(true);
+  };
 
   return (
     <>
       <section className="container">
-        <button onClick={() => setModalOpen(true)}>Create New Profile</button>
+        <button
+          onClick={() => {
+            setEditingProfile(null);
+            setModalOpen(true);
+          }}
+        >
+          Create New Profile
+        </button>
       </section>
 
       <ReactModal
@@ -41,7 +61,11 @@ function Profile() {
         >
           &times; {/* Close button (X) */}
         </button>
-        <ProfileForm addProfile={addProfile} />
+        <ProfileForm
+          profile={editingProfile ? updateProfile : addProfile}
+          initialData={editingProfile || {}}
+          isEditing={Boolean(editingProfile)}
+        />
       </ReactModal>
 
       <section className="profile-card">
@@ -51,6 +75,7 @@ function Profile() {
             id={profile.id}
             data={profile}
             onDelete={deleteProfile}
+            onEdit={openEditModel}
           />
         ))}
       </section>

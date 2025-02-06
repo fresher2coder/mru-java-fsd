@@ -3,7 +3,7 @@ import React from "react";
 
 function ListCard(props) {
   const { fullname, age, occupation, id } = props.data;
-  const { onDelete } = props;
+  const { onDelete, onEdit } = props;
   return (
     <>
       <section className="card">
@@ -20,7 +20,14 @@ function ListCard(props) {
           >
             Delete
           </button>
-          <button className="btn">Edit</button>
+          <button
+            className="btn"
+            onClick={() => {
+              onEdit(props.data);
+            }}
+          >
+            Edit
+          </button>
         </section>
       </section>
     </>
