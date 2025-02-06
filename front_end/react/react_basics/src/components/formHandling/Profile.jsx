@@ -36,16 +36,22 @@ function Profile() {
   const updateProfile = (updatedProfile) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
     setProfiles((prevprofiles) =>
       prevprofiles.map((profile) =>
 =======
     setProfiles((profiles) =>
       profiles.map((profile) =>
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
 =======
     setProfiles((profiles) =>
       profiles.map((profile) =>
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
         profile.id === updatedProfile.id ? updatedProfile : profile
       )
     );
@@ -55,13 +61,19 @@ function Profile() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
   const openEditModel = (profile) => {
 =======
   const openEditModal = (profile) => {
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
 =======
   const openEditModal = (profile) => {
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
     setEditingProfile(profile);
     setModalOpen(true);
   };
@@ -116,13 +128,19 @@ function Profile() {
         <ProfileForm
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
           profile={editingProfile ? updateProfile : addProfile}
 =======
           addProfile={editingProfile ? updateProfile : addProfile}
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
 =======
           addProfile={editingProfile ? updateProfile : addProfile}
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
           initialData={editingProfile || {}}
           isEditing={Boolean(editingProfile)}
         />
@@ -135,16 +153,22 @@ function Profile() {
             data={profile}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
             onDelete={deleteProfile}
             onEdit={openEditModel}
 =======
             onDelete={() => deleteProfile(profile.id)}
             onEdit={() => openEditModal(profile)}
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
 =======
             onDelete={() => deleteProfile(profile.id)}
             onEdit={() => openEditModal(profile)}
 >>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
           />
         ))}
       </section>
