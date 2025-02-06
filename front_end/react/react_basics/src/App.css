@@ -332,31 +332,8 @@ table td {
 }
 
 /* modal-sytle  */
-/* Modal overlay */
-.ReactModal__Overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Modal content */
-.ReactModal__Content {
-  background: transparent !important;
-  border: none !important;
-  width: 90% !important;
-  max-width: 500px !important;
-  margin: auto !important;
-  padding: 20px !important;
-  transition: all 0.3s ease !important;
-  position: relative !important;
-  overflow-x: hidden !important;
-}
-
-/* Close button */
-.modal-close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
+/* .modal {
+  content: {
+    background-color: "transparent";
+  },
+} */
