@@ -2,8 +2,8 @@
 import React from "react";
 
 function ListCard(props) {
-  const { fullname, age, occupation, id } = props.data;
-  const { onDelete } = props;
+  const { fullname, age, occupation } = props.data;
+  const { onDelete, onEdit } = props;
   return (
     <>
       <section className="card">
@@ -12,15 +12,12 @@ function ListCard(props) {
         <p>Age: {age}</p>
         <p>Occupation: {occupation}</p>
         <section className="btns">
-          <button
-            className="btn"
-            onClick={() => {
-              onDelete(id);
-            }}
-          >
+          <button className="btn" onClick={onDelete}>
             Delete
           </button>
-          <button className="btn">Edit</button>
+          <button className="btn" onClick={onEdit}>
+            Edit
+          </button>
         </section>
       </section>
     </>

@@ -12,6 +12,17 @@ function Profile() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const addProfile = (newProfile) => {
+    // Check if a profile with the same fullname already exists
+    const isDuplicate = profiles.some(
+      (profile) =>
+        profile.fullname.toLowerCase() === newProfile.fullname.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      alert("A profile with this fullname already exists!");
+      return; // Exit without adding the profile
+    }
+
     // If not a duplicate, add the new profile
     newProfile.id = generateId();
     setProfiles((profiles) => [...profiles, newProfile]);
@@ -22,7 +33,20 @@ function Profile() {
     setProfiles((profiles) => profiles.filter((profile) => profile.id !== id));
   };
 
-  const updateProfile = () => {};
+  const updateProfile = (updatedProfile) => {
+    setProfiles((profiles) =>
+      profiles.map((profile) =>
+        profile.id === updatedProfile.id ? updatedProfile : profile
+      )
+    );
+    setEditingProfile(null);
+    setModalOpen(false);
+  };
+
+  const openEditModal = (profile) => {
+    setEditingProfile(profile);
+    setModalOpen(true);
+  };
 
   return (
     <>
@@ -33,24 +57,51 @@ function Profile() {
       <ReactModal
         isOpen={isModalOpen}
         onRequestClose={() => setModalOpen(false)}
-        className="ReactModal__Content ReactModal__Overlay"
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          content: {
+            background: "transparent",
+            border: "none",
+            width: "90%", // Responsive width
+            maxWidth: "500px", // Max width for large screens
+            margin: "auto",
+            padding: "20px",
+            transition: "all 0.3s ease", // Smooth transition
+            position: "relative",
+            overflowX: "hidden", // Prevent horizontal overflow
+          },
+        }}
       >
         <button
-          className="modal-close-button"
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            background: "transparent",
+            border: "none",
+            fontSize: "20px",
+            cursor: "pointer",
+          }}
           onClick={() => setModalOpen(false)}
         >
           &times; {/* Close button (X) */}
         </button>
-        <ProfileForm addProfile={addProfile} />
+        <ProfileForm
+          addProfile={editingProfile ? updateProfile : addProfile}
+          initialData={editingProfile || {}}
+          isEditing={Boolean(editingProfile)}
+        />
       </ReactModal>
 
       <section className="profile-card">
         {profiles.map((profile) => (
           <ListCard
             key={profile.id}
-            id={profile.id}
             data={profile}
-            onDelete={deleteProfile}
+            onDelete={() => deleteProfile(profile.id)}
+            onEdit={() => openEditModal(profile)}
           />
         ))}
       </section>
