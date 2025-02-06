@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { validate } from "uuid";
 
 function ProfileForm(props) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+  const { profile, initialData = {}, isEditing = false } = props;
+=======
   const { addProfile, initialData = {}, isEditing = false } = props;
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
+=======
+  const { addProfile, initialData = {}, isEditing = false } = props;
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
   const [formData, setFormData] = useState({
     fullname: "",
     age: "",
@@ -18,6 +33,25 @@ function ProfileForm(props) {
       setFormData(initialData);
     }
   }, [initialData, isEditing]);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+
+  const [errors, setErrors] = useState({
+    fullname: "",
+    age: "",
+    occupation: "",
+  });
+
+  useEffect(() => {
+    if (isEditing) setFormData(initialData);
+  }, [initialData, isEditing]);
+<<<<<<< HEAD
+=======
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
 
   const handleChange = (event) => {
     setFormData((prevData) => ({
@@ -28,6 +62,29 @@ function ProfileForm(props) {
 
   const validateForm = () => {
     let valid = true;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+    let validateErrors = { fullname: "", age: "", occupation: "" };
+
+    const fullNameRegex = /^[A-Za-z]+(?:[A-Za-z]+)*$/;
+
+    if (!fullNameRegex.test(formData.fullname)) {
+      valid = false;
+      validateErrors.fullname = "Invalid name format";
+    }
+
+    //age, occupation
+
+    setErrors(validateErrors);
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
     let validationErrors = { fullname: "", age: "", occupation: "" };
 
     // Fullname validation: Only alphabets and a single space allowed
@@ -53,22 +110,65 @@ function ProfileForm(props) {
     }
 
     setErrors(validationErrors);
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
     return valid;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+      profile(formData);
+      setFormData({ fullname: "", age: "", occupation: "" });
+      setErrors({
+        fullname: "",
+        age: "",
+        occupation: "",
+      });
+=======
       addProfile(formData);
       setFormData({ fullname: "", age: "", occupation: "" });
       setErrors({ fullname: "", age: "", occupation: "" }); // Clear errors on successful submission
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
+=======
+      addProfile(formData);
+      setFormData({ fullname: "", age: "", occupation: "" });
+      setErrors({ fullname: "", age: "", occupation: "" }); // Clear errors on successful submission
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
     }
   };
 
   return (
     <>
       <form className="profile-form" onSubmit={handleSubmit}>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+        <h2>{isEditing ? "Update Profile" : "Create Profile"}</h2>
+=======
         <h2>{isEditing ? "Edit Profile" : "Profile Form"}</h2>
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
+=======
+        <h2>{isEditing ? "Edit Profile" : "Profile Form"}</h2>
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
 
         <input
           type="text"
@@ -79,6 +179,16 @@ function ProfileForm(props) {
           onChange={handleChange}
         />
         {errors.fullname && <p className="error">{errors.fullname}</p>}
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+        {errors.fullname && <span className="error">{errors.fullname}</span>}
+=======
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+
+        {errors.fullname && <span className="error">{errors.fullname}</span>}
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
 
         <input
           type="number"
@@ -89,6 +199,16 @@ function ProfileForm(props) {
           onChange={handleChange}
         />
         {errors.age && <p className="error">{errors.age}</p>}
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+        {errors.age && <span className="error">{errors.age}</span>}
+=======
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+
+        {errors.age && <span className="error">{errors.age}</span>}
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
 
         <input
           type="text"
@@ -100,6 +220,22 @@ function ProfileForm(props) {
         />
         {errors.occupation && <p className="error">{errors.occupation}</p>}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
+        {errors.occupation && (
+          <span className="error">{errors.occupation}</span>
+        )}
+
+=======
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+<<<<<<< HEAD
+=======
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+>>>>>>> b7782c5b6edcaf74f7148c90609eb5624a412008
         <button type="submit">
           {isEditing ? "Update Profile" : "Create Profile"}
         </button>
