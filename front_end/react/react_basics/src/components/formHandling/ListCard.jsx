@@ -2,8 +2,16 @@
 import React from "react";
 
 function ListCard(props) {
+<<<<<<< HEAD
+<<<<<<< HEAD
   const { fullname, age, occupation, id } = props.data;
-  const { onDelete } = props;
+=======
+  const { fullname, age, occupation } = props.data;
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+=======
+  const { fullname, age, occupation } = props.data;
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+  const { onDelete, onEdit } = props;
   return (
     <>
       <section className="card">
@@ -12,15 +20,28 @@ function ListCard(props) {
         <p>Age: {age}</p>
         <p>Occupation: {occupation}</p>
         <section className="btns">
+          <button className="btn" onClick={onDelete}>
+            Delete
+<<<<<<< HEAD
+          </button>
+<<<<<<< HEAD
           <button
             className="btn"
             onClick={() => {
-              onDelete(id);
+              onEdit(props.data);
             }}
           >
-            Delete
+=======
+          <button className="btn" onClick={onEdit}>
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
+            Edit
           </button>
-          <button className="btn">Edit</button>
+=======
+          </button>
+          <button className="btn" onClick={onEdit}>
+            Edit
+          </button>
+>>>>>>> parent of c00ad33 (react basics: form handling curd without updated)
         </section>
       </section>
     </>
