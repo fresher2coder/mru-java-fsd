@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+[1, 2, 5];
+
 const fakeProductData = {
   smartphones: [
     { name: "iPhone 14", available: true },
@@ -59,24 +61,65 @@ function Products() {
   const querySort = searchQuery.get("sort") || "asc";
 
   const [selectedCategory, setSelectedCategory] = useState(queryCategory);
+  const [selectedFilter, setSelectedFilter] = useState(queryFilter);
+  const [selectedSort, setSelectedSort] = useState(querySort);
 
   const [products, setProducts] = useState([]);
 
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   useEffect(() => {
-    const products = fakeProductData[selectedCategory];
-    // console.log(products);
+    let products = fakeProductData[selectedCategory] || [];
+
+    if (selectedFilter == "available") {
+      products = products.filter((product) => product.available);
+    }
+
+    products.sort((a, b) => {
+      if (selectedSort == "asc") return a.name.localeCompare(b.name);
+      else return b.name.localeCompare(a.name);
+    });
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
     setProducts(products);
-  }, [selectedCategory]);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [selectedCategory, selectedFilter, selectedSort]);
 
   const handleCategory = (event) => {
     const value = event.target.value;
     setSelectedCategory(value);
-    searchQuery({
+    setSearchQuery({
       category: value,
       filter: "all",
       sort: "asc",
     });
   };
+  const handleFilter = (event) => {
+    const value = event.target.value;
+    setSelectedFilter(value);
+    setSearchQuery({
+      category: "",
+      filter: value,
+      sort: "asc",
+    });
+  };
+  const handleSort = (event) => {
+    const value = event.target.value;
+    setSelectedSort(value);
+    setSearchQuery({
+      category: "",
+      filter: "all",
+      sort: value,
+    });
+  };
+
   return (
     <>
       <section className="product-container">
@@ -84,7 +127,7 @@ function Products() {
         <label htmlFor="" className="label">
           Select Category
         </label>
-        <select name="" id="" className="select-box" onClick={handleCategory}>
+        <select name="" id="" className="select-box" onChange={handleCategory}>
           <option value="">--Select Category--</option>
           {Object.keys(fakeProductData).map((category) => (
             <option key={category} value={category}>
@@ -93,14 +136,46 @@ function Products() {
           ))}
         </select>
 
-        <section className="products">
-          <ul>
-            {products.map((product) => (
-              <li key={product.name}>{product.name}</li>
-            ))}
-          </ul>
-        </section>
+        {selectedCategory && (
+          <>
+            <section className="filter-sort-container">
+              <div>
+                <label className="label">Filter:</label>
+                <select className="select-box" onChange={handleFilter}>
+                  <option value="all">All</option>
+                  <option value="available">Available</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="label">Sort: </label>
+                <select className="select-box" onChange={handleSort}>
+                  <option value="asc">Asc</option>
+                  <option value="desc">Desc</option>
+                </select>
+              </div>
+            </section>
+            <section className="products">
+              <ul>
+                {products.map((product) => (
+                  <li key={product.name}>{product.name}</li>
+                ))}
+              </ul>
+            </section>
+          </>
+        )}
       </section>
+
+      {showBackToTop && (
+        <button
+          className="back-to-top"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          Back to Top
+        </button>
+      )}
     </>
   );
 }

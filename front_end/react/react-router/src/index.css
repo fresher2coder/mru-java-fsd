@@ -239,3 +239,19 @@ p {
 .product-list li {
   margin-bottom: 8px;
 }
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff8800;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1000;
+}
+.back-to-top:hover {
+  background-color: #b34800;
+}
