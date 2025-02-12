@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const fakeProductData = {
   smartphones: [
@@ -53,55 +53,158 @@ const fakeProductData = {
 };
 
 function Products() {
-  const [searchQuery, setSearchQuery] = useSearchParams();
-  const queryCategory = searchQuery.get("category") || "";
-  const queryFilter = searchQuery.get("filter") || "all";
-  const querySort = searchQuery.get("sort") || "asc";
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const queryCategory = searchParams.get("category") || "";
+  const querySort = searchParams.get("sort") || "asc";
+  const queryFilter = searchParams.get("filter") || "all";
 
   const [selectedCategory, setSelectedCategory] = useState(queryCategory);
-
+  const [selectedSort, setSelectedSort] = useState(querySort);
+  const [selectedFilter, setSelectedFilter] = useState(queryFilter);
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const products = fakeProductData[selectedCategory];
-    // console.log(products);
-    setProducts(products);
-  }, [selectedCategory]);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  const handleCategory = (event) => {
-    const value = event.target.value;
+  const productCategories = Object.keys(fakeProductData);
+
+  useEffect(() => {
+    if (queryCategory) {
+      fetchProducts(queryCategory);
+    }
+
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [queryCategory, queryFilter, querySort]);
+
+  const fetchProducts = (category) => {
+    let filteredProducts = fakeProductData[category] || [];
+
+    // Apply filter
+    if (selectedFilter === "available") {
+      filteredProducts = filteredProducts.filter((p) => p.available);
+    }
+
+    // Apply sorting
+    filteredProducts.sort((a, b) => {
+      if (selectedSort === "asc") {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+
+    setProducts(filteredProducts);
+  };
+
+  const handleCategoryChange = (e) => {
+    const value = e.target.value;
     setSelectedCategory(value);
-    searchQuery({
+    setSearchParams({
       category: value,
-      filter: "all",
-      sort: "asc",
+      sort: selectedSort,
+      filter: selectedFilter,
     });
   };
-  return (
-    <>
-      <section className="product-container">
-        <h1 className="title">Search Products by Category</h1>
-        <label htmlFor="" className="label">
-          Select Category
-        </label>
-        <select name="" id="" className="select-box" onClick={handleCategory}>
-          <option value="">--Select Category--</option>
-          {Object.keys(fakeProductData).map((category) => (
-            <option key={category} value={category}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </option>
-          ))}
-        </select>
 
-        <section className="products">
-          <ul>
-            {products.map((product) => (
-              <li key={product.name}>{product.name}</li>
-            ))}
-          </ul>
-        </section>
-      </section>
-    </>
+  const handleSortChange = (e) => {
+    const value = e.target.value;
+    setSelectedSort(value);
+    setSearchParams({
+      category: selectedCategory,
+      sort: value,
+      filter: selectedFilter,
+    });
+  };
+
+  const handleFilterChange = (e) => {
+    const value = e.target.value;
+    setSelectedFilter(value);
+    setSearchParams({
+      category: selectedCategory,
+      sort: selectedSort,
+      filter: value,
+    });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <div className="product-container">
+      <h1 className="title">Search Products by Category</h1>
+
+      <label className="label">Select Category:</label>
+      <select
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+        className="select-box"
+      >
+        <option value="">-- Select a Category --</option>
+        {productCategories.map((category) => (
+          <option key={category} value={category}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </option>
+        ))}
+      </select>
+
+      {selectedCategory && (
+        <>
+          <div className="filter-sort-container">
+            <div>
+              <label className="label">Filter:</label>
+              <select
+                value={selectedFilter}
+                onChange={handleFilterChange}
+                className="select-box"
+              >
+                <option value="all">All Products</option>
+                <option value="available">Available Only</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="label">Sort:</label>
+              <select
+                value={selectedSort}
+                onChange={handleSortChange}
+                className="select-box"
+              >
+                <option value="asc">Sort by Name (A-Z)</option>
+                <option value="desc">Sort by Name (Z-A)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="result-title">Results for: "{selectedCategory}"</h2>
+            {products.length ? (
+              <ul className="product-list">
+                {products.map((product, index) => (
+                  <li key={index}>
+                    {product.name}{" "}
+                    {product.available ? "(Available)" : "(Out of Stock)"}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No products found.</p>
+            )}
+          </div>
+        </>
+      )}
+
+      {showBackToTop && (
+        <button onClick={scrollToTop} className="back-to-top">
+          Back to Top
+        </button>
+      )}
+    </div>
   );
 }
 
