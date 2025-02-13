@@ -22,6 +22,9 @@ function Header() {
           )}
           {isLoggedIn && (
             <li className="nav-item">
+              <NavLink className="nav-link" to="/users">
+                Users
+              </NavLink>
               <NavLink className="nav-link" to="/dashboard">
                 Dashboard
               </NavLink>
