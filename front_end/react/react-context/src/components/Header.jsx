@@ -5,31 +5,31 @@ import { useAuth } from "../contexts/AuthContext";
 function Header() {
   const { isLoggedIn } = useAuth();
   return (
-    <>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
+    <header className="header">
+      <nav className="navbar">
+        <ul className="nav-list">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/">
+              Home
+            </NavLink>
+          </li>
+          {!isLoggedIn && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
             </li>
-            {!isLoggedIn && (
-              <>
-                <li>
-                  <NavLink to="/login">Login</NavLink>
-                </li>
-              </>
-            )}
-            {isLoggedIn && (
-              <>
-                <li>
-                  <NavLink to="/dashboard">Dashboard</NavLink>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      </header>
-    </>
+          )}
+          {isLoggedIn && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/dashboard">
+                Dashboard
+              </NavLink>
+            </li>
+          )}
+        </ul>
+      </nav>
+    </header>
   );
 }
 

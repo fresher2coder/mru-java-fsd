@@ -9,15 +9,15 @@ function Login() {
   };
 
   return (
-    <>
-      <h3>Login Page</h3>
-      <button onClick={handleLogin}>Login</button>
-      {isLoggedIn && (
-        <>
-          <p>Login is Success</p>
-        </>
-      )}
-    </>
+    <div className="login-container">
+      <div className="login-card">
+        <h3 className="login-title">Login Page</h3>
+        <button className="login-button" onClick={handleLogin}>
+          Login
+        </button>
+        {isLoggedIn && <p className="login-success">Login is Success</p>}
+      </div>
+    </div>
   );
 }
 

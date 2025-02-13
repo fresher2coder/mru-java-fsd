@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import { AuthProvider } from "../contexts/AuthContext";
+import Dashboard from "../pages/Dashbboard";
 
 function AppRouter() {
   return (
@@ -12,6 +13,7 @@ function AppRouter() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </MainLayout>
       </AuthProvider>
