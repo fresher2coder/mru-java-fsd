@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
       );
 
       setUsers(response.data);
+      setError(null);
     } catch (error) {
       setError(error);
     } finally {

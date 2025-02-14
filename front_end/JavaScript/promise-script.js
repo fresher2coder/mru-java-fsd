@@ -1,8 +1,6 @@
-//promise
 const promise_1 = new Promise((resolve, reject) => {
-  //fetching data
-  let love = true;
-
+  //fetch data
+  const love = false;
   if (love) {
     resolve("Heart");
   } else {
@@ -12,14 +10,17 @@ const promise_1 = new Promise((resolve, reject) => {
 
 promise_1
   .then((data) => {
-    console.log("Happy Ending: ", data);
+    console.log("Marriage: ", data);
   })
   .catch((data) => {
-    console.log("Bad Ending: ", data);
+    console.log("Break up: ", data);
   });
 
 const promise_fn = (love) => {
+  //fetch data
   return new Promise((resolve, reject) => {
+    //fetch data
+
     if (love) {
       resolve("Heart");
     } else {
@@ -28,10 +29,10 @@ const promise_fn = (love) => {
   });
 };
 
-promise_fn(false)
+promise_fn(true)
   .then((data) => {
-    console.log("Happy Ending: ", data);
+    console.log("Marriage: ", data);
   })
   .catch((data) => {
-    console.log("Bad Ending: ", data);
+    console.log("Break up: ", data);
   });
