@@ -1,0 +1,162 @@
+/* src/components/TodoList.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, rgb(255, 238, 249), rgb(255, 19, 212));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* src/App.css */
+
+/* Add Todo Form */
+.add-todo-form {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.todo-input {
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  outline: none;
+  transition: border 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.add-button {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-button:hover {
+  background: #218838;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  max-width: 400px;
+  width: 100%;
+}
+
+.todo-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: grab;
+}
+
+.todo-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.todo-text {
+  font-size: 18px;
+  flex: 1;
+  margin-right: 10px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.todo-text.completed {
+  text-decoration: line-through;
+  color: #bbb;
+}
+
+.add-todo-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.add-button {
+  background: linear-gradient(145deg, #28a745, #218838);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.add-button:hover {
+  background: linear-gradient(145deg, #218838, #1e7e34);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.delete-button {
+  background: linear-gradient(145deg, #dc3545, #c82333);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.delete-button:hover {
+  background: linear-gradient(145deg, #c82333, #bd2130);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
