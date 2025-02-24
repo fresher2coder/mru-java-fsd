@@ -19,16 +19,16 @@ const TodoList = () => {
 
   // Handle Drag Over
   const handleDragOver = (event, index) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (draggedItemIndex === null) return;
 
     // Reorder items visually
     const newList = [...tempOrder];
-    const draggedItem = newList.splice(draggedItemIndex, 1)[0];
+    const draggedItem = newList.splice(draggedItemIndex, 1)[0]; //[a, b, c, d] [c] c
     newList.splice(index, 0, draggedItem);
 
     setTempOrder(newList);
-    setDraggedItemIndex(index);
+    setDraggedItemIndex(index); //smooth transition
     updateOrder(tempOrder); // Persist new order to server
   };
 

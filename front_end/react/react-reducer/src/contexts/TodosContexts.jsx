@@ -28,7 +28,7 @@ const addTodoAPI = async (text, todos, dispatch) => {
   try {
     const response = await axios.post(API_URL, newTodo);
     // Optimistically update state
-    dispatch({ type: "ADD", payload: newTodo });
+    dispatch({ type: "ADD", payload: response.data });
   } catch (error) {
     console.error("Failed to add todo:", error);
   }
@@ -51,12 +51,13 @@ const deleteTodoAPI = async (id, dispatch) => {
 const updateOrderAPI = async (todos, dispatch) => {
   try {
     // Loop through each todo and update its order
-    const updateRequests = todos.map((todo, index) =>
-      axios.patch(`${API_URL}/${todo.id}`, { order: index + 1 })
+    const updateRequests = todos.map(
+      (todo, index) =>
+        axios.patch(`${API_URL}/${todo.id}`, { order: index + 1 }) //js-4-promise-s, hmtl-3-promise-s, A-2-promise-s, css-1-promise-failed
     );
 
     // Wait for all requests to complete
-    await Promise.all(updateRequests);
+    await Promise.all(updateRequests); //race any
 
     // Update the state after successful API updates
     dispatch({ type: "UPDATE_ORDER", payload: todos });
