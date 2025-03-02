@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "personal": {
+        "name": "Dineshkumar",
+        "email": "dd@gmail.com",
+        "phone": "9445750347",
+        "dob": "1991-02-06",
+        "gender": "Male"
+      },
+      "permanent": {
+        "doorno": "6",
+        "street": "dk street",
+        "city": "Chennai",
+        "state": "TamilNadu",
+        "country": "India",
+        "pin": "600059"
+      },
+      "current": {
+        "doorno": "6",
+        "street": "dd street",
+        "city": "Chennai",
+        "state": "TamilNadu",
+        "country": "India",
+        "pin": "600059"
+      },
+      "sameAsPermanent": true,
+      "languages": [
+        {
+          "name": "English",
+          "read": true,
+          "write": true,
+          "speak": true
+        },
+        {
+          "name": "Tamil",
+          "read": true,
+          "write": true,
+          "speak": true
+        },
+        {
+          "name": "Telugu",
+          "read": true,
+          "write": false,
+          "speak": false
+        }
+      ],
+      "credentials": {
+        "username": "dk123",
+        "password": "0607",
+        "confirmPassword": "0607"
+      },
+      "id": 1
+    }
+  ]
+}

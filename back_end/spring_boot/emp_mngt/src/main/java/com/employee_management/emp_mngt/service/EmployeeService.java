@@ -15,20 +15,6 @@ public class EmployeeService {
         System.out.println("1️⃣ Constructor: EmployeeService bean is created.");
     }
 
-    @PostConstruct
-    public void initializeEmployees() {
-        System.out.println("4️⃣ @PostConstruct: Loading employees & roles...");
-
-        // Simulating database with a HashMap
-        employeeRoles = new HashMap<>();
-        employeeRoles.put("E101", "Manager");
-        employeeRoles.put("E102", "Developer");
-        employeeRoles.put("E103", "HR");
-        employeeRoles.put("E104", "Support");
-
-        System.out.println("✅ Employees loaded: " + employeeRoles);
-    }
-
     public String getEmployeeRole(String empId) {
         return employeeRoles.getOrDefault(empId, "Guest");
     }
@@ -63,10 +49,4 @@ public class EmployeeService {
         }
     }
 
-    @PreDestroy
-    public void cleanup() {
-        System.out.println("7️⃣ @PreDestroy: Releasing employee data...");
-        employeeRoles.clear();
-        System.out.println("✅ Employee data cleared. Application shutting down.");
-    }
 }
