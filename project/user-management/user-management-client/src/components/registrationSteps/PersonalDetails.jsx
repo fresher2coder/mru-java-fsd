@@ -55,7 +55,7 @@ const Button = styled.button`
 
 const PersonalDetails = ({ formData, setFormData, nextStep }) => {
   return (
-    <Container>
+    <>
       <Title>Step 1: Personal Details</Title>
       <label>
         Name
@@ -141,7 +141,7 @@ const PersonalDetails = ({ formData, setFormData, nextStep }) => {
       <div style={{ textAlign: "right", marginTop: "10px" }}>
         <Button onClick={nextStep}>Next</Button>
       </div>
-    </Container>
+    </>
   );
 };
 

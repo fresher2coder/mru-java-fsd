@@ -1,4 +1,5 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import PersonalDetails from "../components/registrationSteps/PersonalDetails";
