@@ -92,9 +92,12 @@ public class EmployeeTaskManager {
                 // smsService.sendSms(employee.getPhoneNumber(), alertMessage);
                 // System.out.println("📲 SMS sent to " + employee.getPhoneNumber());
 
-                // Send WhatsApp
-                whatsAppService.sendWhatsAppMessage(employee.getPhoneNumber(), alertMessage);
-                System.out.println("💬 WhatsApp message sent to " + employee.getPhoneNumber());
+                // Send WhatsApp Notification
+                whatsAppService.sendWhatsAppMessage(employee.getPhoneNumber(),
+                        task.getTaskId(),
+                        task.getPriority().toString(),
+                        task.getDueDate().toString());
+                System.out.println("📢 WhatsApp Notification sent to " + employee.getPhoneNumber());
 
             }
         }
