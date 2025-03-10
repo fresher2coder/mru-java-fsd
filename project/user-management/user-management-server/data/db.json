@@ -1,3 +1,50 @@
 {
-  "users": []
+  "users": [
+    {
+      "personal": {
+        "name": "Dineshkumar",
+        "email": "sendmail2dk@gmail.com",
+        "phone": "9445750347",
+        "dob": "1991-02-06",
+        "gender": "Male"
+      },
+      "permanent": {
+        "doorno": "1",
+        "street": "dk street",
+        "city": "chennai",
+        "state": "tamil nadu",
+        "country": "India",
+        "pin": "600001"
+      },
+      "current": {
+        "doorno": "1",
+        "street": "dk street",
+        "city": "chennai",
+        "state": "tamil nadu",
+        "country": "India",
+        "pin": "600001"
+      },
+      "sameAsPermanent": true,
+      "languages": [
+        {
+          "name": "English",
+          "read": true,
+          "write": true,
+          "speak": false
+        },
+        {
+          "name": "Tamil",
+          "read": false,
+          "write": true,
+          "speak": false
+        }
+      ],
+      "credentials": {
+        "username": "dk123",
+        "password": "123",
+        "confirmPassword": "123"
+      },
+      "id": 1
+    }
+  ]
 }
