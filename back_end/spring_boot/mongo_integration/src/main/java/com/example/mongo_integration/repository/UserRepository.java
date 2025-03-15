@@ -7,5 +7,5 @@ import com.example.mongo_integration.model.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
-
+    User findByPersonalEmail(String email);
 }
