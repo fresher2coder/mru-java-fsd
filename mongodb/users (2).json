@@ -1,0 +1,1292 @@
+[
+    {
+        "personal": {
+            "name": "Dineshkumar",
+            "email": "user1.email@example.com",
+            "phone": "9000000001",
+            "dob": "2005-08-01",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "278",
+            "street": "Street 1",
+            "city": "Delhi",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "172854"
+        },
+        "current": {
+            "doorno": "278",
+            "street": "Street 1",
+            "city": "Delhi",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "172854"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": false,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "English",
+                "read": false,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user1",
+            "password": "$2b$12$54N0Tu81rGwPTnpwoeldS.ciKduQXEHn23q.eAanBgVwBbM.kZb3G"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Divya Dineshkumar",
+            "email": "user2.email@example.com",
+            "phone": "9000000002",
+            "dob": "1992-03-12",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "172",
+            "street": "Street 4",
+            "city": "Chennai",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "316806"
+        },
+        "current": {
+            "doorno": "172",
+            "street": "Street 4",
+            "city": "Chennai",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "316806"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": false,
+                "speak": false
+            },
+            {
+                "name": "French",
+                "read": false,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user2",
+            "password": "$2b$12$wGczE2EEboKtSe0m0T/s7u.TNK8dg.mxTuq0nwaMoTAkwSXP7mC6a"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Darwin Divya Dines",
+            "email": "user3.email@example.com",
+            "phone": "9000000003",
+            "dob": "1995-10-21",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "121",
+            "street": "Street 14",
+            "city": "Lucknow",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "369257"
+        },
+        "current": {
+            "doorno": "121",
+            "street": "Street 14",
+            "city": "Lucknow",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "369257"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "French",
+                "read": false,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user3",
+            "password": "$2b$12$2HwVtm5f5s6szIo.LQrYe.wY7ycEsSTGWLguOGhovwM4KkE/EYQCy"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Arun Kumar",
+            "email": "user4.email@example.com",
+            "phone": "9000000004",
+            "dob": "1993-09-13",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "419",
+            "street": "Street 2",
+            "city": "Pune",
+            "state": "Tamil Nadu",
+            "country": "India",
+            "pin": "784826"
+        },
+        "current": {
+            "doorno": "419",
+            "street": "Street 2",
+            "city": "Pune",
+            "state": "Tamil Nadu",
+            "country": "India",
+            "pin": "784826"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": true,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "English",
+                "read": true,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user4",
+            "password": "$2b$12$K2775Z8uNqM1VcBCR42o3eEEbEbDvImXsDCMMt53ywcYjmYS5F3QW"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Priya Sharma",
+            "email": "user5.email@example.com",
+            "phone": "9000000005",
+            "dob": "2002-08-09",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "27",
+            "street": "Street 3",
+            "city": "Jaipur",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "774566"
+        },
+        "current": {
+            "doorno": "27",
+            "street": "Street 3",
+            "city": "Jaipur",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "774566"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": true,
+                "write": true,
+                "speak": true
+            },
+            {
+                "name": "Chinese",
+                "read": false,
+                "write": true,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user5",
+            "password": "$2b$12$fEFOFMJCnUQ7xeDdJIri4Oo7Np4HbQ0nDsbEkM.ApoB1RM3tWlIqe"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Rajesh Verma",
+            "email": "user6.email@example.com",
+            "phone": "9000000006",
+            "dob": "1993-04-07",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "190",
+            "street": "Street 8",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "299956"
+        },
+        "current": {
+            "doorno": "190",
+            "street": "Street 8",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "299956"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "English",
+                "read": false,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user6",
+            "password": "$2b$12$ij5Lg5jpJYgTWGYyKFJ7ou8uO9mc9pXJnha5dCaEpwvznVWZOYT8u"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Sneha Iyer",
+            "email": "user7.email@example.com",
+            "phone": "9000000007",
+            "dob": "1995-03-31",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "6",
+            "street": "Street 20",
+            "city": "Kolkata",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "497567"
+        },
+        "current": {
+            "doorno": "6",
+            "street": "Street 20",
+            "city": "Kolkata",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "497567"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": true,
+                "write": true,
+                "speak": true
+            },
+            {
+                "name": "French",
+                "read": true,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user7",
+            "password": "$2b$12$5VCXBB3v1rWWUOknvVg/GeU50myIzq4ITlDTLUzbZpqKc07h9y7O."
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Anand Bhat",
+            "email": "user8.email@example.com",
+            "phone": "9000000008",
+            "dob": "1992-12-12",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "7",
+            "street": "Street 18",
+            "city": "Chennai",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "639703"
+        },
+        "current": {
+            "doorno": "7",
+            "street": "Street 18",
+            "city": "Chennai",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "639703"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user8",
+            "password": "$2b$12$H31yAqKTHIJ1jTXiMDbELOKl3Bz4Sjlv4uRedDX6idlHexwgc3X1K"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Neha Gupta",
+            "email": "user9.email@example.com",
+            "phone": "9000000009",
+            "dob": "1986-02-26",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "57",
+            "street": "Street 20",
+            "city": "Ahmedabad",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "932124"
+        },
+        "current": {
+            "doorno": "57",
+            "street": "Street 20",
+            "city": "Ahmedabad",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "932124"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": true,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "Chinese",
+                "read": true,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user9",
+            "password": "$2b$12$vq8ZXrcCqzNXffKdaeJo2em8/3HXeoySwzJGuO4/jyHOL3XDPRxra"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Suresh Nair",
+            "email": "user10.email@example.com",
+            "phone": "9000000010",
+            "dob": "1989-03-07",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "116",
+            "street": "Street 7",
+            "city": "Pune",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "353632"
+        },
+        "current": {
+            "doorno": "116",
+            "street": "Street 7",
+            "city": "Pune",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "353632"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "English",
+                "read": false,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user10",
+            "password": "$2b$12$ffFRnto30AthEAbxe2DcROZkSwfDyfk0Q/FQVGdc7QvGvmIvC9WFm"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Karthik Reddy",
+            "email": "user11.email@example.com",
+            "phone": "9000000011",
+            "dob": "2001-01-16",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "428",
+            "street": "Street 10",
+            "city": "Hyderabad",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "683909"
+        },
+        "current": {
+            "doorno": "428",
+            "street": "Street 10",
+            "city": "Hyderabad",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "683909"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "German",
+                "read": false,
+                "write": false,
+                "speak": true
+            },
+            {
+                "name": "French",
+                "read": true,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user11",
+            "password": "$2b$12$6WnHe4Pf4AhZONeA5tYVPumgx8Klmv/NXBYgvi9fnu9ELHKfygU9S"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Meera Menon",
+            "email": "user12.email@example.com",
+            "phone": "9000000012",
+            "dob": "2000-11-05",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "396",
+            "street": "Street 3",
+            "city": "Bangalore",
+            "state": "Maharashtra",
+            "country": "India",
+            "pin": "599718"
+        },
+        "current": {
+            "doorno": "396",
+            "street": "Street 3",
+            "city": "Bangalore",
+            "state": "Maharashtra",
+            "country": "India",
+            "pin": "599718"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Chinese",
+                "read": true,
+                "write": true,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user12",
+            "password": "$2b$12$csV4N.jYeaJyiVUlhRSnE.MhYMolxBDSYjjhLcW9b8CHdfRQwEmMi"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Amit Joshi",
+            "email": "user13.email@example.com",
+            "phone": "9000000013",
+            "dob": "1987-10-12",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "457",
+            "street": "Street 17",
+            "city": "Jaipur",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "380876"
+        },
+        "current": {
+            "doorno": "457",
+            "street": "Street 17",
+            "city": "Jaipur",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "380876"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "German",
+                "read": true,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user13",
+            "password": "$2b$12$2SpXriI75I.k6t6Ed1mTUu05ZhDM28Hpe70W8n3iD97mVCTW0woaO"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Ravi Shankar",
+            "email": "user14.email@example.com",
+            "phone": "9000000014",
+            "dob": "2010-02-25",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "184",
+            "street": "Street 11",
+            "city": "Hyderabad",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "667499"
+        },
+        "current": {
+            "doorno": "184",
+            "street": "Street 11",
+            "city": "Hyderabad",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "667499"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "German",
+                "read": false,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user14",
+            "password": "$2b$12$n8FHb1gngko6ZdW/8OVRzuy20FvDtwU/PR457JEA9SHtxdIANf.LW"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Sonia Singh",
+            "email": "user15.email@example.com",
+            "phone": "9000000015",
+            "dob": "2002-08-10",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "497",
+            "street": "Street 10",
+            "city": "Delhi",
+            "state": "West Bengal",
+            "country": "India",
+            "pin": "888750"
+        },
+        "current": {
+            "doorno": "497",
+            "street": "Street 10",
+            "city": "Delhi",
+            "state": "West Bengal",
+            "country": "India",
+            "pin": "888750"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Chinese",
+                "read": false,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user15",
+            "password": "$2b$12$JsARyc3AsmXFiEAgZ2LvJOxVXl1udTZ5uIlZKJA5SiK9Dt7W3ScUW"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Ganesh Kumar",
+            "email": "user16.email@example.com",
+            "phone": "9000000016",
+            "dob": "1991-12-20",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "196",
+            "street": "Street 16",
+            "city": "Lucknow",
+            "state": "Tamil Nadu",
+            "country": "India",
+            "pin": "872674"
+        },
+        "current": {
+            "doorno": "196",
+            "street": "Street 16",
+            "city": "Lucknow",
+            "state": "Tamil Nadu",
+            "country": "India",
+            "pin": "872674"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": false,
+                "speak": true
+            },
+            {
+                "name": "German",
+                "read": true,
+                "write": true,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user16",
+            "password": "$2b$12$NHM4kKzqH0FzB23vI.1bHuw00PlNmLa1XMitmUN1nCg9K8zuffRnS"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Pooja Desai",
+            "email": "user17.email@example.com",
+            "phone": "9000000017",
+            "dob": "1993-12-15",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "412",
+            "street": "Street 20",
+            "city": "Pune",
+            "state": "Uttar Pradesh",
+            "country": "India",
+            "pin": "324226"
+        },
+        "current": {
+            "doorno": "412",
+            "street": "Street 20",
+            "city": "Pune",
+            "state": "Uttar Pradesh",
+            "country": "India",
+            "pin": "324226"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": true,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user17",
+            "password": "$2b$12$vl3VB4hh6DN8/gbpyk83kO1r/MvEe41Gjjbuw964p/lGk3.E3CvWm"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Rahul Mehta",
+            "email": "user18.email@example.com",
+            "phone": "9000000018",
+            "dob": "1995-06-27",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "441",
+            "street": "Street 6",
+            "city": "Bangalore",
+            "state": "Gujarat",
+            "country": "India",
+            "pin": "809033"
+        },
+        "current": {
+            "doorno": "441",
+            "street": "Street 6",
+            "city": "Bangalore",
+            "state": "Gujarat",
+            "country": "India",
+            "pin": "809033"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "English",
+                "read": false,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user18",
+            "password": "$2b$12$Zu44RzfNGOJXt4JyH.hmq.HiIhxrGhdZuhzROWv9AUO.8MFzux5eO"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Shruti Patil",
+            "email": "user19.email@example.com",
+            "phone": "9000000019",
+            "dob": "1984-10-29",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "363",
+            "street": "Street 19",
+            "city": "Lucknow",
+            "state": "Uttar Pradesh",
+            "country": "India",
+            "pin": "594037"
+        },
+        "current": {
+            "doorno": "363",
+            "street": "Street 19",
+            "city": "Lucknow",
+            "state": "Uttar Pradesh",
+            "country": "India",
+            "pin": "594037"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": true,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user19",
+            "password": "$2b$12$mKNivKMVfjwyznVczLH/5OOcmLukxp3LZigzFU.WUDeIt27ZQAKYm"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Vikas Pandey",
+            "email": "user20.email@example.com",
+            "phone": "9000000020",
+            "dob": "1995-02-06",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "22",
+            "street": "Street 7",
+            "city": "Ahmedabad",
+            "state": "Tamil Nadu",
+            "country": "India",
+            "pin": "511968"
+        },
+        "current": {
+            "doorno": "22",
+            "street": "Street 7",
+            "city": "Ahmedabad",
+            "state": "Tamil Nadu",
+            "country": "India",
+            "pin": "511968"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Chinese",
+                "read": true,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user20",
+            "password": "$2b$12$amGTRoJKXFY8MR.R2WnDHuG22JBOM8huTQKsLS/5O9g8Tbza97mI6"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Anjali Sharma",
+            "email": "user21.email@example.com",
+            "phone": "9000000021",
+            "dob": "1993-03-26",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "29",
+            "street": "Street 5",
+            "city": "Kolkata",
+            "state": "Maharashtra",
+            "country": "India",
+            "pin": "744337"
+        },
+        "current": {
+            "doorno": "29",
+            "street": "Street 5",
+            "city": "Kolkata",
+            "state": "Maharashtra",
+            "country": "India",
+            "pin": "744337"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": false,
+                "speak": false
+            },
+            {
+                "name": "French",
+                "read": true,
+                "write": true,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user21",
+            "password": "$2b$12$XSAfjDpkY5D2YISP2Nh/UuvcLBoREro38k63k752cCyIGZ.76SfM2"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Vinayak Rao",
+            "email": "user22.email@example.com",
+            "phone": "9000000022",
+            "dob": "1995-05-29",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "226",
+            "street": "Street 16",
+            "city": "Delhi",
+            "state": "Maharashtra",
+            "country": "India",
+            "pin": "665500"
+        },
+        "current": {
+            "doorno": "226",
+            "street": "Street 16",
+            "city": "Delhi",
+            "state": "Maharashtra",
+            "country": "India",
+            "pin": "665500"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": true,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user22",
+            "password": "$2b$12$Izzt2NAhgZxfKECw2XtBzej42f7bOIxKDVq5zqb7Fj59/eh2VW/pG"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Kavitha Mohan",
+            "email": "user23.email@example.com",
+            "phone": "9000000023",
+            "dob": "1986-10-15",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "263",
+            "street": "Street 15",
+            "city": "Kolkata",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "973747"
+        },
+        "current": {
+            "doorno": "263",
+            "street": "Street 15",
+            "city": "Kolkata",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "973747"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": false,
+                "write": false,
+                "speak": false
+            },
+            {
+                "name": "Chinese",
+                "read": false,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user23",
+            "password": "$2b$12$kKsqoErgsiq/xsC5qWN8yOzgnZekMeFvHAgviOO4wgdE/dlaMlXqu"
+        },
+        "role": "seller",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Sachin Kulkarni",
+            "email": "user24.email@example.com",
+            "phone": "9000000024",
+            "dob": "2005-04-12",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "135",
+            "street": "Street 8",
+            "city": "Mumbai",
+            "state": "Delhi",
+            "country": "India",
+            "pin": "428364"
+        },
+        "current": {
+            "doorno": "135",
+            "street": "Street 8",
+            "city": "Mumbai",
+            "state": "Delhi",
+            "country": "India",
+            "pin": "428364"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": true,
+                "write": false,
+                "speak": true
+            },
+            {
+                "name": "German",
+                "read": false,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user24",
+            "password": "$2b$12$vFm2uaS6DGYRw2G1Ccxb1uIz30OfwB86qR4sCZ/GXdnCf64J5NmL6"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Preethi Raj",
+            "email": "user25.email@example.com",
+            "phone": "9000000025",
+            "dob": "1985-10-17",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "19",
+            "street": "Street 3",
+            "city": "Hyderabad",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "616608"
+        },
+        "current": {
+            "doorno": "19",
+            "street": "Street 3",
+            "city": "Hyderabad",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "616608"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "French",
+                "read": true,
+                "write": false,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user25",
+            "password": "$2b$12$4KEou6.mcUnrBTtMdNkC2OPO0lX13SQM.Gpf2JKDHsGTQBt69s.iW"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Sathish Kumar",
+            "email": "user26.email@example.com",
+            "phone": "9000000026",
+            "dob": "1994-01-18",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "187",
+            "street": "Street 10",
+            "city": "Mumbai",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "944799"
+        },
+        "current": {
+            "doorno": "187",
+            "street": "Street 10",
+            "city": "Mumbai",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "944799"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "English",
+                "read": true,
+                "write": true,
+                "speak": true
+            }
+        ],
+        "credentials": {
+            "username": "user26",
+            "password": "$2b$12$mkovswVOL6uJj1oP1vqtweY1XdOQQQ0FQUCMy6iuExJyBAEr9StvO"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Niveditha Nair",
+            "email": "user27.email@example.com",
+            "phone": "9000000027",
+            "dob": "1998-04-12",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "458",
+            "street": "Street 17",
+            "city": "Lucknow",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "162410"
+        },
+        "current": {
+            "doorno": "458",
+            "street": "Street 17",
+            "city": "Lucknow",
+            "state": "Telangana",
+            "country": "India",
+            "pin": "162410"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "English",
+                "read": true,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user27",
+            "password": "$2b$12$4pSjol9ZgchHEgEanyUwOOnlGFfT4rcazQYpgdvx7v1uokDMy3/nG"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Gaurav Tiwari",
+            "email": "user28.email@example.com",
+            "phone": "9000000028",
+            "dob": "2003-04-09",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "498",
+            "street": "Street 9",
+            "city": "Hyderabad",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "850091"
+        },
+        "current": {
+            "doorno": "498",
+            "street": "Street 9",
+            "city": "Hyderabad",
+            "state": "Rajasthan",
+            "country": "India",
+            "pin": "850091"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "German",
+                "read": true,
+                "write": true,
+                "speak": false
+            },
+            {
+                "name": "English",
+                "read": false,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user28",
+            "password": "$2b$12$u3l2VlQcO7z8.QjT5f392ecaAcVGhckqsJ6BIwytkWccOpl0dhcjq"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Lakshmi Prasad",
+            "email": "user29.email@example.com",
+            "phone": "9000000029",
+            "dob": "2005-02-17",
+            "gender": "Male"
+        },
+        "permanent": {
+            "doorno": "496",
+            "street": "Street 12",
+            "city": "Pune",
+            "state": "Gujarat",
+            "country": "India",
+            "pin": "280768"
+        },
+        "current": {
+            "doorno": "496",
+            "street": "Street 12",
+            "city": "Pune",
+            "state": "Gujarat",
+            "country": "India",
+            "pin": "280768"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "German",
+                "read": false,
+                "write": true,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user29",
+            "password": "$2b$12$fXwEx/twqakqFjyig2JPZu2Tg5AUbVoOylu/HjAf6UIqs4vZmFVWK"
+        },
+        "role": "admin",
+        "_class": "com.example.mongo_integration.model.User"
+    },
+    {
+        "personal": {
+            "name": "Deepak Choudhary",
+            "email": "user30.email@example.com",
+            "phone": "9000000030",
+            "dob": "2010-03-08",
+            "gender": "Female"
+        },
+        "permanent": {
+            "doorno": "357",
+            "street": "Street 4",
+            "city": "Mumbai",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "883475"
+        },
+        "current": {
+            "doorno": "357",
+            "street": "Street 4",
+            "city": "Mumbai",
+            "state": "Karnataka",
+            "country": "India",
+            "pin": "883475"
+        },
+        "sameAsPermanent": true,
+        "languages": [
+            {
+                "name": "Spanish",
+                "read": false,
+                "write": false,
+                "speak": false
+            }
+        ],
+        "credentials": {
+            "username": "user30",
+            "password": "$2b$12$5BapoKMSk78SalsheU2iee34x.lG/00OpG0G8DD/zFyrxaC4Ke/ku"
+        },
+        "role": "consumer",
+        "_class": "com.example.mongo_integration.model.User"
+    }
+]

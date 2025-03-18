@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAuth } from "../context/AuthContext"; // Replace with your AuthContext path
+import { useAuth } from "../context/AuthContext";
 
 const Container = styled.div`
   max-width: 800px;
@@ -54,12 +54,42 @@ const FeatureCard = styled.li`
 `;
 
 function Dashboard() {
-  const { state } = useAuth(); // Access the state from AuthContext
-  const user = state.user;
+  const { state } = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const username = state.user?.username; // Get the logged-in username
+
+  useEffect(() => {
+    if (username) {
+      fetch(`http://localhost:5000/users?username=${username}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.length > 0) {
+            setUserDetails(data[0]); // Assuming username is unique
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching user details:", error);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, [username]);
+
+  if (loading) {
+    return <Container>Loading user details...</Container>;
+  }
+
+  if (!userDetails) {
+    return <Container>Error: User not found</Container>;
+  }
 
   return (
     <Container>
-      <Title>Welcome, {user?.personal.name || "User"}!</Title>
+      <Title>Welcome, {userDetails.personal?.name || "User"}!</Title>
       <p>Here are the features available for you:</p>
       <Features>
         <FeatureCard>

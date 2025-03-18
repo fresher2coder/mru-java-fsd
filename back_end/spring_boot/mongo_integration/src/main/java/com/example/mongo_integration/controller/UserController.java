@@ -9,19 +9,29 @@ import com.example.mongo_integration.model.User;
 import com.example.mongo_integration.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     // 1️⃣ Create User
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
+    }
+
+    // 🔹 Login & Get JWT
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+        String token = userService.loginUser(email, password);
+        return ResponseEntity.ok(Map.of("token", token));
     }
 
     // 2️⃣ Retrieve User by ID
