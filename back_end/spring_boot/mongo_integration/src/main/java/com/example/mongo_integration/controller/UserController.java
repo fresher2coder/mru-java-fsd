@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.mongo_integration.model.Credentials;
 import com.example.mongo_integration.model.User;
 import com.example.mongo_integration.service.UserService;
 
@@ -27,11 +28,17 @@ public class UserController {
 
     // 🔹 Login & Get JWT
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> credentials) {
-        String email = credentials.get("email");
-        String password = credentials.get("password");
-        String token = userService.loginUser(email, password);
-        return ResponseEntity.ok(Map.of("token", token));
+    public ResponseEntity<Map<String, String>> login(@RequestBody Credentials credentials) {
+        String username = credentials.getUsername();
+        String password = credentials.getPassword();
+        String token = userService.loginUser(username, password);
+        return ResponseEntity.ok(Map.of("token", token, "username", username));
+    }
+
+    @PostMapping("/dashboard")
+    public ResponseEntity<Map<String, User>> dashboard(@RequestHeader("Authorization") String token) {
+        User user = userService.getUserFromToken(token);
+        return ResponseEntity.ok(Map.of("user", user));
     }
 
     // 2️⃣ Retrieve User by ID

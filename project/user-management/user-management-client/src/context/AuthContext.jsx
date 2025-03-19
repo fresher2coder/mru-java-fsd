@@ -15,9 +15,12 @@ export const AuthProvider = ({ children }) => {
 
   // Store only the username in localStorage
   useEffect(() => {
+    console.log(state);
     if (state.isAuthenticated) {
       localStorage.setItem("authUsername", state.user.username);
+      // sessionStorage.setItem("authUsername", state.user.username);
     } else {
+      // sessionStorage.removeItem("authUsername");
       localStorage.removeItem("authUsername");
     }
   }, [state]);
@@ -31,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("authUsername");
     dispatch({ type: "LOGOUT" });
   };
 

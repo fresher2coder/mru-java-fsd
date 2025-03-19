@@ -10,4 +10,6 @@ import com.example.mongo_integration.model.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
     Optional<User> findByPersonalEmail(String email);
+
+    Optional<User> findByCredentialsUsername(String username);
 }

@@ -13,20 +13,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        // http
-        // .authorizeHttpRequests(auth -> auth
-        // .anyRequest().permitAll() // ❌ No authentication required for any endpoint
-        // )
-        // .csrf(AbstractHttpConfigurer::disable())
-        // .httpBasic(); // You can remove this if you don't need Basic Auth
-
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/register", "/api/users/login").permitAll() // Public endpoints
-                        .anyRequest().authenticated() // Other endpoints require authentication
+                        .anyRequest().permitAll()// ❌ No authentication required for any endpoint
                 )
-                .csrf(AbstractHttpConfigurer::disable) // ❌ Disable CSRF for REST API
-                .httpBasic(Customizer.withDefaults()); // Use Basic Authentication (Change to JWT later)
+                .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(Customizer.withDefaults()); // You can remove this if you don't need Basic Auth
+
+        // http
+        // .authorizeHttpRequests(auth -> auth
+        // .requestMatchers("/api/users/register", "/api/users/login").permitAll() //
+        // Public endpoints
+        // .anyRequest().authenticated() // Other endpoints require authentication
+        // )
+        // .csrf(AbstractHttpConfigurer::disable) // ❌ Disable CSRF for REST API
+        // .httpBasic(Customizer.withDefaults()); // Use Basic Authentication (Change to
+        // JWT later)
 
         return http.build();
     }

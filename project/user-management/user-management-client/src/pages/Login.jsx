@@ -96,7 +96,7 @@ const LoginComponent = () => {
       }
 
       // Step 3: Login via AuthContext
-      login(user); // Pass the user data to context
+      login(user.credentials.username); // Pass the user data to context
       // Redirect to dashboard
 
       navigate("/dashboard");

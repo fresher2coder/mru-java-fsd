@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -37,8 +38,8 @@ public class UserService {
     }
 
     // 🔹 Login & Generate JWT
-    public String loginUser(String email, String password) {
-        User user = userRepository.findByPersonalEmail(email)
+    public String loginUser(String username, String password) {
+        User user = userRepository.findByCredentialsUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("Invalid credentials"));
 
         if (!passwordEncoder.matches(password, user.getCredentials().getPassword())) {
@@ -46,6 +47,20 @@ public class UserService {
         }
 
         return jwtUtil.generateToken(user.getCredentials().getUsername());
+        // return "jolly";
+    }
+
+    public User getUserFromToken(String token) {
+        // Extract username from token
+        Optional<String> extractedUsername = jwtUtil.extractUsername(token.replace("Bearer ", ""));
+
+        if (extractedUsername.isEmpty()) {
+            throw new UserNotFoundException("Invalid or expired token.");
+        }
+
+        // Fetch user from the database
+        return userRepository.findByCredentialsUsername(extractedUsername.get())
+                .orElseThrow(() -> new UserNotFoundException("User not found for token."));
     }
 
     // 2️⃣ Retrieve User by ID (Throws Not Found Exception)

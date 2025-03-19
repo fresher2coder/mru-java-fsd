@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../context/AuthContext";
 
+import axios from "axios";
+
 const Container = styled.div`
   max-width: 800px;
   margin: 100px auto;
@@ -61,22 +63,29 @@ function Dashboard() {
   const username = state.user?.username; // Get the logged-in username
 
   useEffect(() => {
-    if (username) {
-      fetch(`http://localhost:5000/users?username=${username}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.length > 0) {
-            setUserDetails(data[0]); // Assuming username is unique
-          }
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching user details:", error);
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
-    }
+    const fetchUserDetails = async () => {
+      if (!username) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/users?username=${username}`
+        );
+
+        const user = response.data[0];
+        if (user) {
+          setUserDetails(user); // Assuming username is unique
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserDetails();
   }, [username]);
 
   if (loading) {

@@ -4,7 +4,7 @@
       "personal": {
         "name": "Dineshkumar",
         "email": "sendmail2dk@gmail.com",
-        "phone": "9445750347",
+        "phone": "9445750346",
         "dob": "1991-02-06",
         "gender": "Male"
       },
@@ -37,6 +37,12 @@
           "read": false,
           "write": true,
           "speak": false
+        },
+        {
+          "name": "Telugu",
+          "read": false,
+          "write": true,
+          "speak": false
         }
       ],
       "credentials": {
@@ -45,6 +51,46 @@
         "confirmPassword": "123"
       },
       "id": 1
+    },
+    {
+      "personal": {
+        "name": "Dineshkumar Thangavel",
+        "email": "dk",
+        "phone": "",
+        "dob": "",
+        "gender": ""
+      },
+      "permanent": {
+        "doorno": "",
+        "street": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "pin": ""
+      },
+      "current": {
+        "doorno": "",
+        "street": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "pin": ""
+      },
+      "sameAsPermanent": false,
+      "languages": [
+        {
+          "name": "",
+          "read": false,
+          "write": false,
+          "speak": false
+        }
+      ],
+      "credentials": {
+        "username": "dk_123",
+        "password": "123546",
+        "confirmPassword": ""
+      },
+      "id": 2
     }
   ]
 }
