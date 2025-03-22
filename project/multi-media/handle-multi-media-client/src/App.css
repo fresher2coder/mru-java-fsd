@@ -1,0 +1,118 @@
+.file-upload-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.file-drop-zone {
+  border: 2px dashed #007bff;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #007bff;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+
+.file-drop-zone:hover {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.file-label {
+  display: block;
+  margin-top: 5px;
+  background: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: #218838;
+}
+
+.selected-file {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
