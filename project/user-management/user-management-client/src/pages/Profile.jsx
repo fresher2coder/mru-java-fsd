@@ -5,6 +5,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import ProfileEditModal from "../components/ProfileEditModal";
+import { useNavigate } from "react-router-dom";
 
 // Set Modal root
 Modal.setAppElement("#root");
@@ -71,12 +72,14 @@ const DeleteButton = styled.button`
 `;
 
 const Profile = () => {
-  const { state } = useAuth();
+  const { state, logout } = useAuth();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editSection, setEditSection] = useState(null);
   const [formData, setFormData] = useState(null);
   const [tempData, setTempData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const username = state.user?.username; // Get logged-in username
 
@@ -89,11 +92,13 @@ const Profile = () => {
       }
 
       try {
+        // ✅ Fetch user details from Spring Boot API
         const response = await axios.get(
-          `http://localhost:3000/users?username=${username}`
+          "http://localhost:8080/api/users/check-auth",
+          { withCredentials: true } // 🔹 Send cookies with request
         );
 
-        const user = response.data[0];
+        const user = response.data.user;
         if (user) {
           setFormData(user);
         }
@@ -127,7 +132,7 @@ const Profile = () => {
     setTempData({ ...tempData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
+  // Handle form submission (Update)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedData = { ...formData, [editSection]: tempData };
@@ -136,10 +141,13 @@ const Profile = () => {
 
     try {
       await axios.put(
-        `http://localhost:3000/users/${formData.id}`,
+        `http://localhost:8080/api/users/update/${formData.id}`,
         updatedData,
-        { headers: { "Content-Type": "application/json" } }
+        {
+          withCredentials: true,
+        }
       );
+      alert("Profile updated successfully.");
     } catch (error) {
       console.error("Error updating user data:", error);
     }
@@ -148,8 +156,14 @@ const Profile = () => {
   // Handle delete account
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/users/${formData.id}`);
+      await axios.delete(
+        `http://localhost:8080/api/users/delete/${formData.id}`,
+        {
+          withCredentials: true,
+        }
+      );
       alert("Account deleted successfully.");
+      logout();
     } catch (error) {
       console.error("Error deleting user account:", error);
     }

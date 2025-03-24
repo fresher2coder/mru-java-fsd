@@ -67,6 +67,7 @@ const Button = styled.button`
 const Credentials = ({ formData, setFormData, prevStep, handleSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <Container>
@@ -115,16 +116,8 @@ const Credentials = ({ formData, setFormData, prevStep, handleSubmit }) => {
         <Input
           type={showConfirmPassword ? "text" : "password"}
           placeholder="Confirm Password"
-          value={formData.credentials.confirmPassword}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              credentials: {
-                ...formData.credentials,
-                confirmPassword: e.target.value,
-              },
-            })
-          }
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
         <ToggleIcon

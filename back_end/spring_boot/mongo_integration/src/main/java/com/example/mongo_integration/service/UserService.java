@@ -51,16 +51,25 @@ public class UserService {
     }
 
     public User getUserFromToken(String token) {
-        // Extract username from token
-        Optional<String> extractedUsername = jwtUtil.extractUsername(token.replace("Bearer ", ""));
+        // 1. Remove "Bearer " prefix
+        String cleanedToken = token.replace("Bearer ", "");
 
+        // 2. Validate token
+        Optional<String> extractedUsername = jwtUtil.extractUsername(cleanedToken);
         if (extractedUsername.isEmpty()) {
             throw new UserNotFoundException("Invalid or expired token.");
         }
 
-        // Fetch user from the database
-        return userRepository.findByCredentialsUsername(extractedUsername.get())
+        // 3. Fetch user from database
+        User user = userRepository.findByCredentialsUsername(extractedUsername.get())
                 .orElseThrow(() -> new UserNotFoundException("User not found for token."));
+
+        // 4. Revalidate token against extracted username (for extra security)
+        if (!jwtUtil.validateToken(cleanedToken, user.getCredentials().getUsername())) {
+            throw new UserNotFoundException("Invalid token for this user.");
+        }
+
+        return user;
     }
 
     // 2️⃣ Retrieve User by ID (Throws Not Found Exception)

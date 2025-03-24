@@ -57,7 +57,6 @@ const UserRegistration = () => {
     credentials: {
       username: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
@@ -66,7 +65,7 @@ const UserRegistration = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post("http://localhost:3000/users", formData);
+      await axios.post("http://localhost:8080/api/users/register", formData);
 
       navigate("/login");
 

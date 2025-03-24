@@ -101,9 +101,7 @@ function Header() {
                 <StyledNavLink to="/profile">Profile</StyledNavLink>
               </li>
               <li>
-                <LogoutLink to="/logout" onClick={logout}>
-                  Logout
-                </LogoutLink>
+                <LogoutLink onClick={logout}>Logout</LogoutLink>
               </li>
             </>
           )}

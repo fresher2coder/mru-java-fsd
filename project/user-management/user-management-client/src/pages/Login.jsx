@@ -78,34 +78,24 @@ const LoginComponent = () => {
     setError("");
 
     try {
-      // Step 1: Check if the username exists
-      const userResponse = await axios.get(
-        `http://localhost:3000/users?username=${formData.username}`
+      const response = await axios.post(
+        "http://localhost:8080/api/users/login",
+        formData,
+        { withCredentials: true } // Allow cookies to be sent
       );
-      const user = userResponse.data[0];
 
-      if (!user) {
-        setError("Username does not exist");
-        return;
-      }
+      console.log(response.data.username);
 
-      // Step 2: Validate the password
-      if (user.credentials.password !== formData.password) {
-        setError("Incorrect password");
-        return;
-      }
-
-      // Step 3: Login via AuthContext
-      login(user.credentials.username); // Pass the user data to context
-      // Redirect to dashboard
-
-      navigate("/dashboard");
+      login(response.data.username); // ✅ Store user state
+      navigate("/dashboard"); // ✅ Redirect to dashboard
     } catch (error) {
-      console.error("Login error:", error);
-      setError("Something went wrong. Please try again.");
+      if (error.response) {
+        setError(error.response.data.message || "Invalid credentials");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
     }
   };
-
   return (
     <Container>
       <form onSubmit={handleLogin}>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../context/AuthContext";
-
 import axios from "axios";
 
 const Container = styled.div`
@@ -59,46 +58,36 @@ function Dashboard() {
   const { state } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const username = state.user?.username; // Get the logged-in username
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      if (!username) {
-        setLoading(false);
-        return;
-      }
-
       try {
+        // ✅ Fetch user details from Spring Boot API
         const response = await axios.get(
-          `http://localhost:3000/users?username=${username}`
+          "http://localhost:8080/api/users/check-auth",
+          { withCredentials: true } // 🔹 Send cookies with request
         );
 
-        const user = response.data[0];
-        if (user) {
-          setUserDetails(user); // Assuming username is unique
-        }
+        setUserDetails(response.data.user);
       } catch (error) {
         console.error("Error fetching user details:", error);
+        setError("Failed to load user data. Please log in again.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchUserDetails();
-  }, [username]);
+  }, []);
 
-  if (loading) {
-    return <Container>Loading user details...</Container>;
-  }
-
-  if (!userDetails) {
-    return <Container>Error: User not found</Container>;
-  }
+  if (loading) return <Container>Loading user details...</Container>;
+  if (error) return <Container>{error}</Container>;
+  if (!userDetails) return <Container>User not found.</Container>;
 
   return (
     <Container>
-      <Title>Welcome, {userDetails.personal?.name || "User"}!</Title>
+      <Title>Welcome, {userDetails.personal.name || "User"}!</Title>
       <p>Here are the features available for you:</p>
       <Features>
         <FeatureCard>
