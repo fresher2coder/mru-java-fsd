@@ -81,16 +81,9 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  const username = state.user?.username; // Get logged-in username
-
   // Fetch user details
   useEffect(() => {
     const fetchUserDetails = async () => {
-      if (!username) {
-        setLoading(false);
-        return;
-      }
-
       try {
         // ✅ Fetch user details from Spring Boot API
         const response = await axios.get(
@@ -98,19 +91,17 @@ const Profile = () => {
           { withCredentials: true } // 🔹 Send cookies with request
         );
 
-        const user = response.data.user;
-        if (user) {
-          setFormData(user);
-        }
+        setFormData(response.data.user);
       } catch (error) {
         console.error("Error fetching user details:", error);
+        setError("Failed to load user data. Please log in again.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchUserDetails();
-  }, [username]);
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (!formData) return <p>No user data found.</p>;

@@ -1,4 +1,4 @@
-package com.example.mongo_integration.controller;
+package com.example.e_commerce_server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -6,9 +6,9 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.mongo_integration.model.Credentials;
-import com.example.mongo_integration.model.User;
-import com.example.mongo_integration.service.UserService;
+import com.example.e_commerce_server.model.user.Credentials;
+import com.example.e_commerce_server.model.user.User;
+import com.example.e_commerce_server.service.UserService;
 
 import jakarta.servlet.http.HttpServletResponse;
 

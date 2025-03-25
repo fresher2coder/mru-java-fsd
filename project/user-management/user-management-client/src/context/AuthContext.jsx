@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import authReducer from "../reducers/authReducer";
 import axios from "axios";
 
@@ -8,6 +14,7 @@ export const AuthProvider = ({ children }) => {
   const initialState = { isAuthenticated: false, user: null };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -19,11 +26,15 @@ export const AuthProvider = ({ children }) => {
           }
         );
 
-        if (response.status === 200) {
+        console.log("auth context");
+
+        if (response.data.user) {
           dispatch({ type: "LOGIN", payload: response.data.username });
         }
       } catch (error) {
         console.error("Auth check failed:", error);
+      } finally {
+        setLoading(false); // Update loading state after fetching
       }
     };
 
@@ -47,7 +58,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ state, login, logout, updateProfile }}>
+    <AuthContext.Provider
+      value={{ state, login, logout, updateProfile, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );
