@@ -1,29 +1,33 @@
 package com.example.e_commerce_server.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.e_commerce_server.exception.UserNotFoundException;
 import com.example.e_commerce_server.model.user.User;
+import com.example.e_commerce_server.repository.ProductRepository;
 import com.example.e_commerce_server.repository.UserRepository;
 import com.example.e_commerce_server.security.JwtUtil;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.Instant;
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.LinkedList;
+
 import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final JwtUtil jwtUtil;
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    public UserService(UserRepository userRepository, ProductRepository productRepository, JwtUtil jwtUtil) {
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
+        this.jwtUtil = jwtUtil;
+    }
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -37,28 +41,25 @@ public class UserService {
         user.setCreatedAt(now);
         user.setUpdatedAt(now);
 
-        // Initialize fields based on role
+        // Role-based validations
         switch (user.getRole().toLowerCase()) {
-            case "consumer":
-                user.setWishlistIds(new ArrayList<>());
-                user.setCart(new ArrayList<>());
-                user.setOrders(new LinkedList<>());
-                break;
             case "seller":
                 if (user.getSellerInfo() == null) {
                     throw new IllegalArgumentException("Seller information is required for seller registration.");
                 }
-                user.getSellerInfo().setProducts(new ArrayList<>()); // Ensure products list is initialized
                 break;
-
             case "admin":
                 user.setPermissions(Arrays.asList("manage_users", "manage_orders", "manage_products", "view_reports"));
+                break;
+            case "consumer":
+                // No extra setup needed since wishlist, cart, and orders are now separate
+                // collections
                 break;
             default:
                 throw new IllegalArgumentException("Invalid role: " + user.getRole());
         }
 
-        return userRepository.save(user); // DuplicateKeyException will be thrown if a unique constraint is violated
+        return userRepository.save(user);
     }
 
     // 🔹 Login & Generate JWT
@@ -104,7 +105,15 @@ public class UserService {
     }
 
     public void deleteUser(String id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // If the user is a seller, delete all their products
+        if ("seller".equalsIgnoreCase(user.getRole())) {
+            productRepository.deleteBySellerId(id);
+        }
+
+        // Now delete the user
         userRepository.deleteById(id);
     }
-
 }

@@ -27,11 +27,8 @@ public class User {
 
     private List<Address> addresses;
 
-    private List<String> wishlistIds; // List of Wishlist document IDs
-    private List<String> cart; // Store ObjectIds of products
-    private List<String> orders; // Store ObjectIds of orders
-
     private SellerInfo sellerInfo; // Only for Sellers
+
     private List<String> permissions; // Only for Admins
 
     @Indexed
