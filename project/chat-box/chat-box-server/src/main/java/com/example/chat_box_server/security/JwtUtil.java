@@ -1,4 +1,4 @@
-package com.example.e_commerce_server.security;
+package com.example.chat_box_server.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -17,7 +17,7 @@ public class JwtUtil {
     private SecretKey key;
 
     // ✅ Inject secret key from application.properties
-    public JwtUtil(@Value("${jwt.secret}") String secretKey) {
+    public JwtUtil(@Value("${jwt_secret}") String secretKey) {
         this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
     }
 
@@ -30,10 +30,9 @@ public class JwtUtil {
     }
 
     // ✅ Generate JWT Token
-    public String generateToken(String username, String role) {
+    public String generateToken(String username) {
         return Jwts.builder()
                 .subject(username)
-                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key)
@@ -45,19 +44,10 @@ public class JwtUtil {
         return Optional.ofNullable(parseClaims(token).getSubject());
     }
 
-    // Extract role from token
-    public String extractRole(String token) {
-        return parseClaims(token).get("role", String.class);
-    }
-
     // ✅ Validate Token (Handled by Global Exception Handler)
-    public boolean validateToken(String token, String username) {
-        try {
-            Claims claims = parseClaims(token);
-            return claims.getSubject().equals(username) && !isTokenExpired(claims);
-        } catch (Exception e) {
-            return false; // Return false instead of throwing an exception
-        }
+    public boolean validateToken(String token) {
+        Claims claims = parseClaims(token);
+        return !isTokenExpired(claims);
     }
 
     // ✅ Check Token Expiration

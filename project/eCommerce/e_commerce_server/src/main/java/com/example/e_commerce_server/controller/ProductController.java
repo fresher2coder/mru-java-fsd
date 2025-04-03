@@ -2,6 +2,7 @@ package com.example.e_commerce_server.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,7 @@ public class ProductController {
     private final ProductService productService;
 
     // Create a Product
+    @PreAuthorize("hasRole('SELLER')")
     @PostMapping
     public ResponseEntity<Product> createProduct(
             @RequestPart("product") Product product,
@@ -44,12 +46,14 @@ public class ProductController {
     }
 
     // Update Product
+    @PreAuthorize("hasRole('SELLER')")
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable String id, @RequestBody Product product) {
         return ResponseEntity.ok(productService.updateProduct(id, product));
     }
 
     // Delete Product
+    @PreAuthorize("hasRole('SELLER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
         productService.deleteProduct(id);

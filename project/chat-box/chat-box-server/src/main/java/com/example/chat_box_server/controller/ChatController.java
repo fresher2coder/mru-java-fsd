@@ -18,8 +18,8 @@ public class ChatController {
     }
 
     @GetMapping("/messages")
-    public List<ChatMessage> getAllMessages() {
-        return chatService.getAllMessages();
+    public List<ChatMessage> getMessages(@RequestParam String sender, @RequestParam String receiver) {
+        return chatService.getMessagesBetweenUsers(sender, receiver);
     }
 
     @PostMapping("/send")

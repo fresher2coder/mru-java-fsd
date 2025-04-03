@@ -19,6 +19,10 @@ public class ChatService {
         return repository.findAll();
     }
 
+    public List<ChatMessage> getMessagesBetweenUsers(String sender, String receiver) {
+        return repository.findBySenderAndReceiverOrReceiverAndSender(sender, receiver, sender, receiver);
+    }
+
     public ChatMessage saveMessage(ChatMessage message) {
         return repository.save(message);
     }

@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.time.Instant;
 
 import java.util.Arrays;
-
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,18 +40,18 @@ public class UserService {
         String now = Instant.now().toString();
         user.setCreatedAt(now);
         user.setUpdatedAt(now);
-
+        user.setRole(user.getRole().toUpperCase());
         // Role-based validations
-        switch (user.getRole().toLowerCase()) {
-            case "seller":
+        switch (user.getRole()) {
+            case "SELLER":
                 if (user.getSellerInfo() == null) {
                     throw new IllegalArgumentException("Seller information is required for seller registration.");
                 }
                 break;
-            case "admin":
+            case "ADMIN":
                 user.setPermissions(Arrays.asList("manage_users", "manage_orders", "manage_products", "view_reports"));
                 break;
-            case "consumer":
+            case "CONSUMER":
                 // No extra setup needed since wishlist, cart, and orders are now separate
                 // collections
                 break;
@@ -71,7 +71,7 @@ public class UserService {
             throw new UserNotFoundException("Invalid credentials");
         }
 
-        return jwtUtil.generateToken(user.getCredentials().getUsername());
+        return jwtUtil.generateToken(user.getCredentials().getUsername(), user.getRole());
         // return "jolly";
     }
 
@@ -116,4 +116,9 @@ public class UserService {
         // Now delete the user
         userRepository.deleteById(id);
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAllByOrderByCreatedAtDesc();
+    }
+
 }

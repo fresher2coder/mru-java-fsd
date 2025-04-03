@@ -1,12 +1,9 @@
-import React from "react";
-import ChatComponent from "./components/ChatComponent";
+import React, { useState } from "react";
+
+import AppRouter from "./routes/AppRouter";
 
 const App = () => {
-  return (
-    <>
-      <ChatComponent />
-    </>
-  );
+  return <AppRouter />;
 };
 
 export default App;

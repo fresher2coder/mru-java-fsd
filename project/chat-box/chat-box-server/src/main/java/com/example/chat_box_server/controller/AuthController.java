@@ -1,32 +1,35 @@
-package com.example.e_commerce_server.controller;
+package com.example.chat_box_server.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.e_commerce_server.model.user.Credentials;
-import com.example.e_commerce_server.model.user.User;
-import com.example.e_commerce_server.service.UserService;
+import com.example.chat_box_server.dto.Credentials;
+import com.example.chat_box_server.model.User;
+import com.example.chat_box_server.service.AuthService;
+import com.example.chat_box_server.service.OnlineUserService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
+@RequestMapping("/auth")
+public class AuthController {
+    private final AuthService authService;
+    private final OnlineUserService onlineUserService;
 
-    @Autowired
-    private UserService userService;
+    public AuthController(AuthService authService, OnlineUserService onlineUserService) {
+        this.authService = authService;
+        this.onlineUserService = onlineUserService;
+    }
 
-    // 1️⃣ Create User
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.saveUser(user);
+        User savedUser = authService.saveUser(user);
         return ResponseEntity.ok(savedUser);
     }
 
@@ -35,15 +38,14 @@ public class UserController {
             HttpServletResponse response) {
         String username = credentials.getUsername();
         String password = credentials.getPassword();
-        String token = userService.loginUser(username, password);
+        String token = authService.loginUser(username, password);
 
-        // ✅ Create HTTP-Only, Secure Cookie using ResponseCookie
         ResponseCookie jwtCookie = ResponseCookie.from("jwt", token)
                 .httpOnly(true)
                 .secure(false) // Set false for local testing
                 .path("/")
                 .maxAge(60 * 60)
-                .sameSite("Strict")
+                .sameSite("Lax")
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, jwtCookie.toString());
@@ -52,8 +54,8 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Map<String, String>> logout(HttpServletResponse response) {
-        // ✅ Clear cookie by setting max age to 0
+    public ResponseEntity<Map<String, String>> logout(HttpServletResponse response,
+            @CookieValue(value = "jwt", required = false) String token) {
         ResponseCookie jwtCookie = ResponseCookie.from("jwt", "")
                 .httpOnly(true)
                 .secure(true)
@@ -63,6 +65,7 @@ public class UserController {
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, jwtCookie.toString());
+        authService.logoutUser(token);
 
         return ResponseEntity.ok(Map.of("message", "Logout successful"));
     }
@@ -70,27 +73,19 @@ public class UserController {
     @GetMapping("/check-auth")
     public ResponseEntity<Map<String, User>> authenticateUser(
             @CookieValue(value = "jwt", required = false) String token) {
-        User user = userService.getUserFromToken(token);
+        User user = authService.getUserFromToken(token);
         return ResponseEntity.ok(Map.of("user", user));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/all-users")
-    public ResponseEntity<Map<String, List<User>>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-
-        return ResponseEntity.ok(Map.of("Users", users));
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return authService.getAllUsers();
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
-        User user = userService.updateUser(id, updatedUser);
-        return ResponseEntity.ok(user);
+    @GetMapping("/online-users")
+    public ResponseEntity<Set<String>> getOnlineUsers(@CookieValue(value = "jwt", required = false) String token) {
+        Set<String> onlineUsers = onlineUserService.getOnlineUsers(); // Fetch from Redis
+        return ResponseEntity.ok(onlineUsers); // ✅ Don't remove current user
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable String id) {
-        userService.deleteUser(id);
-        return ResponseEntity.ok("User deleted successfully.");
-    }
 }
