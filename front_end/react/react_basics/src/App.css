@@ -359,3 +359,112 @@ table td {
   font-size: 20px;
   cursor: pointer;
 }
+
+/* api fetch */
+
+:root {
+  --bg-gradient: linear-gradient(to right, #0f172a, #1e293b);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-hover: rgba(255, 255, 255, 0.08);
+  --text-color: #e2e8f0;
+  --accent: #38bdf8;
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  --radius: 1rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+  animation: fadeIn 0.8s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.user-list {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-list li,
+.weather-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.user-list li:hover,
+.weather-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  background-color: var(--card-hover);
+}
+
+.weather-card {
+  margin: 0 auto;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeSlideIn 0.9s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.weather-card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.weather-card h3 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: #cbd5e1;
+}
+
+.weather-card p {
+  margin: 0.4rem 0;
+  font-size: 1.1rem;
+}

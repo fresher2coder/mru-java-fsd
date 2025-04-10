@@ -45,13 +45,12 @@ const NotificationDot = styled.span`
   height: 15px;
   border-radius: 50%;
   font-size: 10px;
-  display: flex;
+  display: ${({ show }) => (show ? "flex" : "none")};
   align-items: center;
   justify-content: center;
   position: absolute;
   top: 5px;
   right: 40px;
-  display: ${({ show }) => (show ? "flex" : "none")};
 `;
 
 const CloseButton = styled.button`
@@ -100,7 +99,54 @@ const ChatComponent = () => {
   const [unreadNotifications, setUnreadNotifications] = useState({});
   const currentUser = state?.user || "";
 
+  // ✅ 1. Establish WebSocket connection for current user (to receive messages)
   useEffect(() => {
+    if (!currentUser) return;
+
+    const connectSelfSocket = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/auth/token", {
+          withCredentials: true,
+        });
+        const token = response.data.token;
+
+        if (!token) {
+          console.error("Token not found for WebSocket connection.");
+          return;
+        }
+
+        const selfSocket = new WebSocket(
+          `ws://localhost:8080/chat?token=${token}`
+        );
+
+        selfSocket.onmessage = (event) => {
+          const receivedMessage = JSON.parse(event.data);
+          const sender = receivedMessage.sender;
+
+          setMessages((prev) => ({
+            ...prev,
+            [sender]: [...(prev[sender] || []), receivedMessage],
+          }));
+
+          setUnreadNotifications((prev) => ({
+            ...prev,
+            [sender]: true,
+          }));
+        };
+
+        setSockets((prev) => ({ ...prev, [currentUser]: selfSocket }));
+      } catch (error) {
+        console.error("WebSocket connection failed:", error);
+      }
+    };
+
+    connectSelfSocket();
+  }, [currentUser]);
+
+  // ✅ 2. Fetch online users excluding yourself
+  useEffect(() => {
+    if (!currentUser) return;
+
     axios
       .get("http://localhost:8080/auth/online-users", { withCredentials: true })
       .then((response) => {
@@ -112,46 +158,56 @@ const ChatComponent = () => {
       .catch((error) => console.error("Error fetching online users:", error));
   }, [currentUser]);
 
-  const openChat = (username) => {
+  const openChat = async (username) => {
     if (!openChats.includes(username)) {
       setOpenChats([...openChats, username]);
       setMessages((prev) => ({ ...prev, [username]: [] }));
 
-      const newSocket = new WebSocket(
-        `ws://localhost:8080/chat?token=${document.cookie.split("=")[1]}`
-      );
+      try {
+        const response = await axios.get("http://localhost:8080/auth/token", {
+          withCredentials: true,
+        });
+        const token = response.data.token;
 
-      newSocket.onmessage = (event) => {
-        const receivedMessage = JSON.parse(event.data);
+        if (!token) {
+          console.error("Token not found! WebSocket connection might fail.");
+          return;
+        }
 
-        setMessages((prev) => {
-          const updatedMessages = {
+        const newSocket = new WebSocket(
+          `ws://localhost:8080/chat?token=${token}`
+        );
+
+        newSocket.onmessage = (event) => {
+          const receivedMessage = JSON.parse(event.data);
+
+          setMessages((prev) => ({
             ...prev,
             [receivedMessage.sender]: [
               ...(prev[receivedMessage.sender] || []),
               receivedMessage,
             ],
-          };
-          console.log("📌 Updated messages state: ", updatedMessages); // ✅ Debugging
-          return updatedMessages;
-        });
+          }));
 
-        setUnreadNotifications((prev) => ({
-          ...prev,
-          [receivedMessage.sender]: true,
-        }));
-      };
+          setUnreadNotifications((prev) => ({
+            ...prev,
+            [receivedMessage.sender]: true,
+          }));
+        };
 
-      setSockets((prev) => ({ ...prev, [username]: newSocket }));
+        setSockets((prev) => ({ ...prev, [username]: newSocket }));
 
-      axios
-        .get(
-          `http://localhost:8080/api/chat/messages?sender=${currentUser}&receiver=${username}`
-        )
-        .then((response) =>
-          setMessages((prev) => ({ ...prev, [username]: response.data }))
-        )
-        .catch((error) => console.error("Error loading messages", error));
+        axios
+          .get(
+            `http://localhost:8080/api/chat/messages?sender=${currentUser}&receiver=${username}`
+          )
+          .then((response) =>
+            setMessages((prev) => ({ ...prev, [username]: response.data }))
+          )
+          .catch((error) => console.error("Error loading messages", error));
+      } catch (error) {
+        console.error("Error fetching token", error);
+      }
     } else {
       setUnreadNotifications((prev) => ({
         ...prev,
@@ -166,14 +222,14 @@ const ChatComponent = () => {
       sockets[username].close();
     }
     setSockets((prev) => {
-      const updatedSockets = { ...prev };
-      delete updatedSockets[username];
-      return updatedSockets;
+      const updated = { ...prev };
+      delete updated[username];
+      return updated;
     });
   };
 
   const sendMessage = (username) => {
-    const socket = sockets[username];
+    const socket = sockets[currentUser]; // 💡 Always use your own socket to send
     if (!socket || newMessages[username]?.trim() === "") return;
 
     const chatMessage = {
@@ -221,7 +277,7 @@ const ChatComponent = () => {
           minHeight={300}
         >
           <ChatBox>
-            <ChatHeader className="chat-header">
+            <ChatHeader>
               <span>{username}</span>
               <NotificationDot show={unreadNotifications[username]}>
                 🔴

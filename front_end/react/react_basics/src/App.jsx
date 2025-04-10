@@ -16,6 +16,8 @@ import UserDashboard from "./components/conditionalRendering/UserDashboard";
 import ParentContainer from "./components/useEffect/ParentContainer";
 import EmployeeTable from "./components/mapFilterReduce/EmployeeTable";
 import Profile from "./components/formHandling/Profile";
+import UsersAPI from "./components/apiFetch/UsersAPI";
+import WeatherAPI from "./components/apiFetch/WeatherAPI";
 
 function App() {
   return (
@@ -80,7 +82,12 @@ function App() {
       {/* <EmployeeTable /> */}
 
       {/* form handling  */}
-      <Profile />
+      {/* <Profile /> */}
+
+      {/* user api fetch */}
+      <UsersAPI />
+      {/* <WeatherAPI /> */}
+      <WeatherAPI />
     </>
   );
 }

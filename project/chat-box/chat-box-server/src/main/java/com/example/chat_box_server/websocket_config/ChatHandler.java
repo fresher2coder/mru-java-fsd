@@ -4,8 +4,6 @@ import com.example.chat_box_server.model.ChatMessage;
 import com.example.chat_box_server.security.JwtUtil;
 import com.example.chat_box_server.service.OnlineUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -25,56 +23,78 @@ public class ChatHandler extends TextWebSocketHandler {
     public ChatHandler(JwtUtil jwtUtil, OnlineUserService onlineUserService) {
         this.jwtUtil = jwtUtil;
         this.onlineUserService = onlineUserService;
-
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         String token = getTokenFromSession(session);
-        if (token == null || !jwtUtil.validateToken(token) || !jwtUtil.extractUsername(token).isPresent()) {
+
+        if (token == null || token.isEmpty()) {
+            System.out.println("Invalid token: Token is missing!");
+            session.close(CloseStatus.NOT_ACCEPTABLE);
+            return;
+        }
+
+        if (!jwtUtil.validateToken(token) || !jwtUtil.extractUsername(token).isPresent()) {
+            System.out.println("Invalid token: JWT validation failed!");
             session.close(CloseStatus.NOT_ACCEPTABLE);
             return;
         }
 
         String username = jwtUtil.extractUsername(token).orElseThrow(() -> new RuntimeException("Invalid token"));
+        System.out.println("✅ Authenticated WebSocket connection for user: " + username);
+
+        // ✅ Store session using username as key
         userSessions.put(username, session);
-        onlineUserService.addOnlineUser(username); // ✅ Add user to Redis
+        session.getAttributes().put("username", username);
+
+        onlineUserService.addOnlineUser(username);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-        userSessions.values().remove(session);
-
-        // ✅ Remove user from Redis when disconnected
-        String username = userSessions.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(session))
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElse(null);
+        String username = (String) session.getAttributes().get("username");
 
         if (username != null) {
+            userSessions.remove(username); // ✅ Remove using username
             onlineUserService.removeOnlineUser(username);
+            System.out.println("❌ Disconnected: " + username);
         }
     }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         ChatMessage chatMessage = objectMapper.readValue(message.getPayload(), ChatMessage.class);
-        chatMessage.setTimestamp(LocalDateTime.now()); // Set timestamp
+        chatMessage.setTimestamp(LocalDateTime.now());
 
-        WebSocketSession receiverSession = userSessions.get(chatMessage.getReceiver());
+        String receiver = chatMessage.getReceiver();
+        WebSocketSession receiverSession = userSessions.get(receiver);
+
         if (receiverSession != null && receiverSession.isOpen()) {
             receiverSession.sendMessage(new TextMessage(objectMapper.writeValueAsString(chatMessage)));
+            System.out.println("📤 Sent message to: " + receiver);
+        } else {
+            System.out.println("📭 Receiver is offline: " + receiver);
         }
-
-        session.sendMessage(new TextMessage(objectMapper.writeValueAsString(chatMessage)));
     }
 
     private String getTokenFromSession(WebSocketSession session) {
         String query = session.getUri().getQuery(); // Get query params from WebSocket URL
-        if (query == null || !query.startsWith("token=")) {
+        System.out.println("WebSocket Query: " + query); // 🔍 Debugging
+
+        if (query == null || !query.contains("token=")) {
+            System.out.println("Token not found in query!");
             return null;
         }
-        return query.split("=")[1]; // Extract token from URL query (ws://localhost:8080/chat?token=xyz)
+
+        String[] parts = query.split("token=");
+        if (parts.length < 2 || parts[1].isEmpty()) {
+            System.out.println("Extracted token is empty!");
+            return null;
+        }
+
+        String token = parts[1].trim();
+        System.out.println("Extracted Token: " + token);
+        return token;
     }
 }

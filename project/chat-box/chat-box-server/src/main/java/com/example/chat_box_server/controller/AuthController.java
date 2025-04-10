@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.chat_box_server.dto.Credentials;
 import com.example.chat_box_server.model.User;
+import com.example.chat_box_server.security.JwtUtil;
 import com.example.chat_box_server.service.AuthService;
 import com.example.chat_box_server.service.OnlineUserService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.List;
@@ -21,10 +24,12 @@ import java.util.Set;
 public class AuthController {
     private final AuthService authService;
     private final OnlineUserService onlineUserService;
+    private final JwtUtil jwtUtil;
 
-    public AuthController(AuthService authService, OnlineUserService onlineUserService) {
+    public AuthController(AuthService authService, OnlineUserService onlineUserService, JwtUtil jwtUtil) {
         this.authService = authService;
         this.onlineUserService = onlineUserService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/register")
@@ -86,6 +91,33 @@ public class AuthController {
     public ResponseEntity<Set<String>> getOnlineUsers(@CookieValue(value = "jwt", required = false) String token) {
         Set<String> onlineUsers = onlineUserService.getOnlineUsers(); // Fetch from Redis
         return ResponseEntity.ok(onlineUsers); // ✅ Don't remove current user
+    }
+
+    @GetMapping("/token")
+    public ResponseEntity<?> getToken(HttpServletRequest request) {
+        String token = extractJwtFromCookies(request);
+
+        if (token == null) {
+            return ResponseEntity.status(401).body("Token not found in cookies!");
+        }
+
+        // ✅ Use your existing JwtUtil to validate the token
+        if (!jwtUtil.validateToken(token)) {
+            return ResponseEntity.status(401).body("Invalid or expired token!");
+        }
+
+        return ResponseEntity.ok(Map.of("token", token));
+    }
+
+    private String extractJwtFromCookies(HttpServletRequest request) {
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("jwt".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
     }
 
 }
